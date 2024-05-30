@@ -6,4 +6,40 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient_backround"
-    tools:context=".MainActivity" />
+    tools:context=".MainActivity" >
+
+    <LinearLayout
+        android:id="@+id/resultScreenLayout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/result_screen_view_height"
+        android:background="@drawable/gradient_screen"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/resultTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/result_text_margin_top"
+            android:paddingStart="@dimen/padding_x"
+            android:paddingEnd="@dimen/padding_x"
+            android:text="@string/default_value"
+            android:textAlignment="textEnd"
+            android:textColor="@color/white"
+            android:textSize="@dimen/result_text_size" />
+
+        <TextView
+            android:id="@+id/formulaTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/formula_text_margin_top"
+            android:paddingStart="@dimen/small_text_padding_x"
+            android:paddingEnd="@dimen/small_text_padding_x"
+            android:text="@string/example_formula"
+            android:textAlignment="textEnd"
+            android:textColor="@color/light_grey"
+            android:textSize="@dimen/formula_text_size" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
