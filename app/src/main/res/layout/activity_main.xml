@@ -6,7 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient_background"
-    tools:context=".MainActivity" >
+    android:paddingTop="0dp"
+    android:paddingBottom="0dp"
+    tools:context=".MainActivity">
 
     <LinearLayout
         android:id="@+id/resultScreenLayout"
@@ -56,13 +58,13 @@
             android:id="@+id/mBarLeftLayout"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             android:gravity="start"
-            android:orientation="horizontal"
-            android:layout_weight="1">
+            android:orientation="horizontal">
 
             <Button
-                style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:id="@+id/mPlusButton"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:layout_width="@dimen/m_button_size"
                 android:layout_height="@dimen/m_button_size"
                 android:text="@string/m_plus"
@@ -70,8 +72,8 @@
                 app:cornerRadius="0dp" />
 
             <Button
-                style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:id="@+id/mMinusButton"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:layout_width="@dimen/m_button_size"
                 android:layout_height="@dimen/m_button_size"
                 android:text="@string/m_minus"
@@ -84,13 +86,13 @@
             android:id="@+id/mBarRightLayout"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             android:gravity="end"
-            android:orientation="horizontal"
-            android:layout_weight="1">
+            android:orientation="horizontal">
 
             <Button
-                style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:id="@+id/mSaveButton"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:layout_width="@dimen/m_button_size"
                 android:layout_height="@dimen/m_button_size"
                 android:text="@string/m_save"
@@ -98,8 +100,8 @@
                 app:cornerRadius="0dp" />
 
             <Button
-                style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:id="@+id/mClearButton"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:layout_width="@dimen/m_button_size"
                 android:layout_height="@dimen/m_button_size"
                 android:text="@string/m_clear"
@@ -108,6 +110,289 @@
 
         </LinearLayout>
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/buttonParentLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:baselineAligned="false"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/mBarParentLayout"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:id="@+id/firstColumnLayout"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/squareRootButton"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="sqrt"
+                android:textColor="@color/charcoal_blue"
+                app:cornerRadius="0dp" />
+
+            <Button
+                android:id="@+id/sevenButton"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="7"
+                android:textColor="@color/charcoal_blue"
+                app:cornerRadius="0dp" />
+
+            <Button
+                android:id="@+id/fourButton"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="4"
+                android:textColor="@color/charcoal_blue"
+                app:cornerRadius="0dp" />
+
+            <Button
+                android:id="@+id/oneButton"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="1"
+                android:textColor="@color/charcoal_blue"
+                app:cornerRadius="0dp" />
+
+            <Button
+                android:id="@+id/plusMinusButton"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="+"
+                android:textColor="@color/charcoal_blue"
+                app:cornerRadius="0dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/secondColumnLayout"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/sqrButton"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="sqr"
+                android:textColor="@color/charcoal_blue"
+                app:cornerRadius="0dp" />
+
+            <Button
+                android:id="@+id/eightButton"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="8"
+                android:textColor="@color/charcoal_blue"
+                app:cornerRadius="0dp" />
+
+            <Button
+                android:id="@+id/fiveButton"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="5"
+                android:textColor="@color/charcoal_blue"
+                app:cornerRadius="0dp" />
+
+            <Button
+                android:id="@+id/twoButton"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="2"
+                android:textColor="@color/charcoal_blue"
+                app:cornerRadius="0dp" />
+
+            <Button
+                android:id="@+id/zeroButton"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="0"
+                android:textColor="@color/charcoal_blue"
+                app:cornerRadius="0dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/thirdColumnLayout"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/cubeButton"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="cube"
+                android:textColor="@color/charcoal_blue"
+                app:cornerRadius="0dp" />
+
+            <Button
+                android:id="@+id/nineButton"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="9"
+                android:textColor="@color/charcoal_blue"
+                app:cornerRadius="0dp" />
+
+            <Button
+                android:id="@+id/sixButton"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="6"
+                android:textColor="@color/charcoal_blue"
+                app:cornerRadius="0dp" />
+
+            <Button
+                android:id="@+id/threeButton"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="3"
+                android:textColor="@color/charcoal_blue"
+                app:cornerRadius="0dp" />
+
+            <Button
+                android:id="@+id/decimalButton"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="."
+                android:textColor="@color/charcoal_blue"
+                app:cornerRadius="0dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/fourthColumnLayout"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/percentButton"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="%"
+                android:textColor="@color/charcoal_blue"
+                app:cornerRadius="0dp" />
+
+            <Button
+                android:id="@+id/divideButton"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="div"
+                android:textColor="@color/charcoal_blue"
+                app:cornerRadius="0dp" />
+
+            <Button
+                android:id="@+id/multiplicationButton"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="x"
+                android:textColor="@color/charcoal_blue"
+                app:cornerRadius="0dp" />
+
+            <Button
+                android:id="@+id/subtractionButton"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="-"
+                android:textColor="@color/charcoal_blue"
+                app:cornerRadius="0dp" />
+
+            <Button
+                android:id="@+id/plusButton"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="+"
+                android:textColor="@color/charcoal_blue"
+                app:cornerRadius="0dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/fifthColumnLayout"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/clearButton"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="C"
+                android:textColor="@color/charcoal_blue"
+                app:cornerRadius="0dp" />
+
+            <Button
+                android:id="@+id/deleteButton"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="del"
+                android:textColor="@color/charcoal_blue"
+                app:cornerRadius="0dp" />
+
+            <Button
+                android:id="@+id/equalsButton"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="3"
+                android:background="@drawable/top_left_bottom_right_radius_button"
+                android:text="="
+                android:textColor="@color/white"
+                app:cornerRadius="0dp" />
+        </LinearLayout>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
