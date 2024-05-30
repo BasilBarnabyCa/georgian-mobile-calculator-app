@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="result_screen_view_height">375dp</dimen>
+    <dimen name="result_screen_layout_height">375dp</dimen>
     <dimen name="result_text_size">65sp</dimen>
     <dimen name="result_text_margin_top">120dp</dimen>
     <dimen name="formula_text_size">30sp</dimen>
@@ -10,4 +10,6 @@
     <dimen name="small_text_padding_x">30dp</dimen>
     <dimen name="margin_y">10dp</dimen>
     <dimen name="margin_x">10dp</dimen>
+    <dimen name="m_bar_layout_height">100dp</dimen>
+    <dimen name="m_button_size">75dp</dimen>
 </resources>
