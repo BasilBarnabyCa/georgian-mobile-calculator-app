@@ -13,4 +13,8 @@
     <dimen name="m_bar_layout_height">100dp</dimen>
     <dimen name="m_button_size">75dp</dimen>
     <dimen name="button_parent_layout_height">450dp</dimen>
+    <dimen name="mr_button_width">100dp</dimen>
+    <dimen name="mr_button_height">110dp</dimen>
+    <dimen name="mr_button_margin_top">350dp</dimen>
+    <dimen name="mr_button_padding">0dp</dimen>
 </resources>

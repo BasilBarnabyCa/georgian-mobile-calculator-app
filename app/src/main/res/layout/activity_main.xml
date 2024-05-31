@@ -23,12 +23,12 @@
         <Button
             style="@style/Widget.MaterialComponents.Button.TextButton"
             android:id="@+id/mRecallButton"
-            android:layout_width="100dp"
-            android:layout_height="110dp"
+            android:layout_width="@dimen/mr_button_width"
+            android:layout_height="@dimen/mr_button_height"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="350dp"
+            android:layout_marginTop="@dimen/mr_button_margin_top"
             android:backgroundTint="@color/white"
-            android:padding="0dp"
+            android:padding="@dimen/mr_button_padding"
             android:text="MR"
             android:textColor="@color/slate_blue"
             app:cornerRadius="50dp" />
