@@ -4,7 +4,12 @@
     <color name="white">#FFFFFFFF</color>
     <color name="charcoal_blue">#1B203C</color>
     <color name="slate_blue">#53597E</color>
+    <color name="charcoal_blue_alpha">#CC1B203C</color>
+    <color name="slate_blue_alpha">#CC53597E</color>
+    <color name="fuschia">#7D64C1</color>
     <color name="periwinkle">#A6B4E1</color>
     <color name="cream">#FCEEE5</color>
     <color name="light_grey">#B6B6B6</color>
+    <color name="shadow_color">#80000000</color>
+    <color name="ripple_color">#336750A4</color>
 </resources>
