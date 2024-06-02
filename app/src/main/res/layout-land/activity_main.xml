@@ -138,7 +138,7 @@
 
                 <Button
                     android:id="@+id/mRecallButton"
-                    style="@style/scientific_text_button"
+                    style="@style/rounded_memory_button_land"
                     android:text="@string/memory_recall_text" />
 
                 <ImageButton
