@@ -73,4 +73,14 @@
         <item name="android:textColor">@color/light_grey</item>
         <item name="android:textSize">@dimen/formula_text_size</item>
     </style>
+
+
+    <!--Landscape-->
+    <style name="result_text_land" parent="result_text">
+        <item name="android:layout_marginTop">@dimen/result_text_margin_top_land</item>
+    </style>
+
+    <style name="formula_text_land" parent="formula_text">
+        <item name="android:layout_marginTop">@dimen/formula_text_margin_top_land</item>
+    </style>
 </resources>

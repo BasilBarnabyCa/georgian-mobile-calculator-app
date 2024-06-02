@@ -17,4 +17,8 @@
     <dimen name="mr_button_height">110dp</dimen>
     <dimen name="mr_button_margin_top">350dp</dimen>
     <dimen name="mr_button_padding">0dp</dimen>
+
+    <dimen name="result_screen_layout_height_land">150dp</dimen>
+    <dimen name="result_text_margin_top_land">0dp</dimen>
+    <dimen name="formula_text_margin_top_land">5dp</dimen>
 </resources>
