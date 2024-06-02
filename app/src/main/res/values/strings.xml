@@ -33,4 +33,12 @@
     <string name="nine_text">"9"</string>
     <string name="zero_text">"0"</string>
     <string name="decimal_text">"."</string>
+
+    <string name="open_bracket_text">(</string>
+    <string name="rand_text">Rand</string>
+    <string name="pi_text">Pi</string>
+    <string name="close_bracket_text">)</string>
+    <string name="sin_text">sin</string>
+    <string name="cos_text">cos</string>
+    <string name="tan_text">tan</string>
 </resources>

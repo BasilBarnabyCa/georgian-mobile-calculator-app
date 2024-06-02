@@ -1,29 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--Portrait-->
     <style name="calculator_button" parent="Widget.MaterialComponents.Button.TextButton">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">0dp</item>
         <item name="android:layout_weight">1</item>
         <item name="android:textColor">"@color/charcoal_blue"</item>
-        <item name="cornerRadius">0dp</item>
+        <item name="cornerRadius">@dimen/corner_radius_size</item>
     </style>
 
     <style name="text_button" parent="@style/calculator_button">
         <item name="android:fontFamily">@font/roboto_mono</item>
-        <item name="android:textSize">22sp</item>
+        <item name="android:textSize">@dimen/text_size</item>
     </style>
 
     <style name="font_icon_button" parent="@style/calculator_button">
         <item name="android:fontFamily">@font/fa_solid_900</item>
-        <item name="android:textSize">18sp</item>
+        <item name="android:textSize">@dimen/font_icon_text_size</item>
     </style>
 
     <style name="memory_button" parent="Widget.MaterialComponents.Button.TextButton">
         <item name="android:layout_width">@dimen/m_button_size</item>
         <item name="android:layout_height">@dimen/m_button_size</item>
         <item name="android:textColor">@color/charcoal_blue</item>
-        <item name="android:textSize">14sp</item>
-        <item name="cornerRadius">0dp</item>
+        <item name="android:fontFamily">@font/roboto_mono</item>
+        <item name="android:textSize">@dimen/font_icon_text_size</item>
+        <item name="cornerRadius">@dimen/corner_radius_size</item>
     </style>
 
     <style name="round_memory_button" parent="Widget.MaterialComponents.Button">
@@ -34,7 +36,7 @@
         <item name="android:backgroundTint">@color/white</item>
         <item name="android:padding">0dp</item>
         <item name="android:textColor">@color/slate_blue</item>
-        <item name="cornerRadius">50dp</item>
+        <item name="cornerRadius">@dimen/gradient_corner_radius_size</item>
         <item name="rippleColor">@color/ripple_color</item>
     </style>
 
@@ -42,10 +44,10 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">0dp</item>
         <item name="android:layout_weight">3</item>
-        <item name="android:background">@drawable/large_equals_button_background</item>
+        <item name="android:background">@drawable/curved_gradient_button_background</item>
         <item name="android:fontFamily">@font/fa_solid_900</item>
         <item name="android:textColor">@color/white</item>
-        <item name="cornerRadius">0dp</item>
+        <item name="cornerRadius">@dimen/corner_radius_size</item>
         <item name="rippleColor">@color/slate_blue</item>
     </style>
 
@@ -76,11 +78,34 @@
 
 
     <!--Landscape-->
+    <style name="memory_button_land" parent="calculator_button">
+        <item name="android:textColor">@color/charcoal_blue</item>
+        <item name="android:fontFamily">@font/roboto_mono</item>
+        <item name="android:textSize">22sp</item>
+        <item name="cornerRadius">0dp</item>
+    </style>
+
     <style name="result_text_land" parent="result_text">
         <item name="android:layout_marginTop">@dimen/result_text_margin_top_land</item>
     </style>
 
     <style name="formula_text_land" parent="formula_text">
         <item name="android:layout_marginTop">@dimen/formula_text_margin_top_land</item>
+    </style>
+
+    <style name="gradient_button_land" parent="">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">@drawable/curved_gradient_button_background</item>
+        <item name="android:fontFamily">@font/fa_solid_900</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="cornerRadius">@dimen/corner_radius_size</item>
+        <item name="rippleColor">@color/slate_blue</item>
+    </style>
+
+    <style name="scientific_text_button" parent="@style/calculator_button">
+        <item name="android:fontFamily">@font/roboto_mono</item>
+        <item name="android:textSize">@dimen/scientific_text_size</item>
     </style>
 </resources>

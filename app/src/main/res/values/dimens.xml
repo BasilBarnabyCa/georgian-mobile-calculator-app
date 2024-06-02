@@ -3,6 +3,8 @@
     <dimen name="result_screen_layout_height">375dp</dimen>
     <dimen name="result_text_size">65sp</dimen>
     <dimen name="result_text_margin_top">120dp</dimen>
+    <dimen name="text_size">22dp</dimen>
+    <dimen name="font_icon_text_size">18dp</dimen>
     <dimen name="formula_text_size">30sp</dimen>
     <dimen name="formula_text_margin_top">75dp</dimen>
     <dimen name="padding_y">100dp</dimen>
@@ -17,8 +19,12 @@
     <dimen name="mr_button_height">110dp</dimen>
     <dimen name="mr_button_margin_top">350dp</dimen>
     <dimen name="mr_button_padding">0dp</dimen>
+    <dimen name="corner_radius_size">0dp</dimen>
+    <dimen name="gradient_corner_radius_size">50dp</dimen>
 
     <dimen name="result_screen_layout_height_land">150dp</dimen>
     <dimen name="result_text_margin_top_land">0dp</dimen>
     <dimen name="formula_text_margin_top_land">5dp</dimen>
+    <dimen name="scientific_text_size">20dp</dimen>
+    <dimen name="non_safe_area_width">45dp</dimen>
 </resources>
