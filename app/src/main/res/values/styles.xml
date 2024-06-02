@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="calculator_button" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textColor">"@color/charcoal_blue"</item>
+        <item name="cornerRadius">0dp</item>
+    </style>
+
+    <style name="text_button" parent="@style/calculator_button">
+        <item name="android:fontFamily">@font/roboto_mono</item>
+        <item name="android:textSize">22sp</item>
+    </style>
+
+    <style name="font_icon_button" parent="@style/calculator_button">
+        <item name="android:fontFamily">@font/fa_solid_900</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="memory_button" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="android:layout_width">@dimen/m_button_size</item>
+        <item name="android:layout_height">@dimen/m_button_size</item>
+        <item name="android:textColor">@color/charcoal_blue</item>
+        <item name="android:textSize">14sp</item>
+        <item name="cornerRadius">0dp</item>
+    </style>
+
+    <style name="round_memory_button" parent="Widget.MaterialComponents.Button">
+        <item name="android:layout_width">100dp</item>
+        <item name="android:layout_height">110dp</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:layout_marginTop">350dp</item>
+        <item name="android:backgroundTint">@color/white</item>
+        <item name="android:padding">0dp</item>
+        <item name="android:textColor">@color/slate_blue</item>
+        <item name="cornerRadius">50dp</item>
+        <item name="rippleColor">@color/ripple_color</item>
+    </style>
+
+    <style name="large_gradient_button" parent="">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_weight">3</item>
+        <item name="android:background">@drawable/large_equals_button_background</item>
+        <item name="android:fontFamily">@font/fa_solid_900</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="cornerRadius">0dp</item>
+        <item name="rippleColor">@color/slate_blue</item>
+    </style>
+
+    <style name="screen_text">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/roboto_mono_medium</item>
+        <item name="android:textAlignment">textEnd</item>
+    </style>
+
+    <style name="result_text" parent="screen_text">
+        <item name="android:fontFamily">@font/roboto_mono_medium</item>
+        <item name="android:layout_marginTop">@dimen/result_text_margin_top</item>
+        <item name="android:paddingStart">@dimen/padding_x</item>
+        <item name="android:paddingEnd">@dimen/padding_x</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/result_text_size</item>
+    </style>
+
+    <style name="formula_text" parent="screen_text">
+        <item name="android:fontFamily">@font/roboto_mono</item>
+        <item name="android:layout_marginTop">@dimen/formula_text_margin_top</item>
+        <item name="android:paddingStart">@dimen/small_text_padding_x</item>
+        <item name="android:paddingEnd">@dimen/small_text_padding_x</item>
+        <item name="android:textColor">@color/light_grey</item>
+        <item name="android:textSize">@dimen/formula_text_size</item>
+    </style>
+</resources>

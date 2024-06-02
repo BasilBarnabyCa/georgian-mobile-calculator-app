@@ -21,18 +21,9 @@
         android:elevation="16dp">
 
         <Button
-            style="@style/Widget.MaterialComponents.Button"
             android:id="@+id/mRecallButton"
-            android:layout_width="100dp"
-            android:layout_height="110dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="350dp"
-            android:backgroundTint="@color/white"
-            android:padding="0dp"
-            android:text="@string/memory_recall_text"
-            android:textColor="@color/slate_blue"
-            app:cornerRadius="50dp"
-            app:rippleColor="@color/ripple_color"/>
+            style="@style/round_memory_button"
+            android:text="@string/memory_recall_text"/>
 
     </FrameLayout>
 
@@ -48,29 +39,13 @@
 
         <TextView
             android:id="@+id/resultTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/result_text_margin_top"
-            android:fontFamily="@font/roboto_mono_medium"
-            android:paddingStart="@dimen/padding_x"
-            android:paddingEnd="@dimen/padding_x"
-            android:text="@string/default_value"
-            android:textAlignment="textEnd"
-            android:textColor="@color/white"
-            android:textSize="@dimen/result_text_size" />
+            style="@style/result_text"
+            android:text="@string/default_value"/>
 
         <TextView
             android:id="@+id/formulaTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/formula_text_margin_top"
-            android:fontFamily="@font/roboto_mono"
-            android:paddingStart="@dimen/small_text_padding_x"
-            android:paddingEnd="@dimen/small_text_padding_x"
-            android:text="@string/example_formula"
-            android:textAlignment="textEnd"
-            android:textColor="@color/light_grey"
-            android:textSize="@dimen/formula_text_size" />
+            style="@style/formula_text"
+            android:text="@string/example_formula" />
 
     </LinearLayout>
 
@@ -78,6 +53,7 @@
         android:id="@+id/mBarParentLayout"
         android:layout_width="match_parent"
         android:layout_height="@dimen/m_bar_layout_height"
+        android:baselineAligned="false"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -93,21 +69,13 @@
 
             <Button
                 android:id="@+id/mPlusButton"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
-                android:layout_width="@dimen/m_button_size"
-                android:layout_height="@dimen/m_button_size"
-                android:text="@string/memory_plus_text"
-                android:textColor="@color/charcoal_blue"
-                app:cornerRadius="0dp" />
+                style="@style/memory_button"
+                android:text="@string/memory_plus_text" />
 
             <Button
                 android:id="@+id/mMinusButton"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
-                android:layout_width="@dimen/m_button_size"
-                android:layout_height="@dimen/m_button_size"
-                android:text="@string/memory_minus_text"
-                android:textColor="@color/charcoal_blue"
-                app:cornerRadius="0dp" />
+                style="@style/memory_button"
+                android:text="@string/memory_minus_text" />
 
         </LinearLayout>
 
@@ -121,21 +89,13 @@
 
             <Button
                 android:id="@+id/mSaveButton"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
-                android:layout_width="@dimen/m_button_size"
-                android:layout_height="@dimen/m_button_size"
-                android:text="@string/memory_save_text"
-                android:textColor="@color/charcoal_blue"
-                app:cornerRadius="0dp" />
+                style="@style/memory_button"
+                android:text="@string/memory_save_text" />
 
             <Button
                 android:id="@+id/mClearButton"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
-                android:layout_width="@dimen/m_button_size"
-                android:layout_height="@dimen/m_button_size"
-                android:text="@string/memory_clear_text"
-                android:textColor="@color/charcoal_blue"
-                app:cornerRadius="0dp" />
+                style="@style/memory_button"
+                android:text="@string/memory_clear_text" />
 
         </LinearLayout>
 
@@ -162,55 +122,29 @@
 
             <Button
                 android:id="@+id/squareRootButton"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:fontFamily="@font/fa_solid_900"
-                android:text="@string/square_root_text"
-                android:textColor="@color/charcoal_blue"
-                app:cornerRadius="0dp" />
+                style="@style/font_icon_button"
+                android:text="@string/square_root_text" />
 
             <Button
                 android:id="@+id/sevenButton"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:text="@string/seven_text"
-                android:textColor="@color/charcoal_blue"
-                app:cornerRadius="0dp" />
+                style="@style/text_button"
+                android:text="@string/seven_text" />
 
             <Button
                 android:id="@+id/fourButton"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:text="@string/four_text"
-                android:textColor="@color/charcoal_blue"
-                app:cornerRadius="0dp" />
+                style="@style/text_button"
+                android:text="@string/four_text"/>
 
             <Button
                 android:id="@+id/oneButton"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:text="@string/one_text"
-                android:textColor="@color/charcoal_blue"
-                app:cornerRadius="0dp" />
+                style="@style/text_button"
+                android:text="@string/one_text" />
 
             <Button
                 android:id="@+id/plusMinusButton"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:fontFamily="@font/fa_solid_900"
-                android:text="@string/plus_minus_text"
-                android:textColor="@color/charcoal_blue"
-                app:cornerRadius="0dp" />
+                style="@style/font_icon_button"
+                android:text="@string/plus_minus_text"/>
+
         </LinearLayout>
 
         <LinearLayout
@@ -222,53 +156,28 @@
 
             <Button
                 android:id="@+id/sqrButton"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:text="@string/square_text"
-                android:textColor="@color/charcoal_blue"
-                app:cornerRadius="0dp" />
+                style="@style/font_icon_button"
+                android:text="@string/square_text" />
 
             <Button
+                style="@style/text_button"
                 android:id="@+id/eightButton"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:text="@string/eight_text"
-                android:textColor="@color/charcoal_blue"
-                app:cornerRadius="0dp" />
+                android:text="@string/eight_text"/>
 
             <Button
                 android:id="@+id/fiveButton"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:text="@string/five_text"
-                android:textColor="@color/charcoal_blue"
-                app:cornerRadius="0dp" />
+                style="@style/text_button"
+                android:text="@string/five_text" />
 
             <Button
                 android:id="@+id/twoButton"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:text="@string/two_text"
-                android:textColor="@color/charcoal_blue"
-                app:cornerRadius="0dp" />
+                style="@style/text_button"
+                android:text="@string/two_text"/>
 
             <Button
                 android:id="@+id/zeroButton"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:text="@string/zero_text"
-                android:textColor="@color/charcoal_blue"
-                app:cornerRadius="0dp" />
+                style="@style/text_button"
+                android:text="@string/zero_text" />
         </LinearLayout>
 
         <LinearLayout
@@ -280,57 +189,28 @@
 
             <Button
                 android:id="@+id/cubeButton"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:text="@string/cube_text"
-                android:textColor="@color/charcoal_blue"
-                app:cornerRadius="0dp" />
+                style="@style/font_icon_button"
+                android:text="@string/cube_text"/>
 
             <Button
+                style="@style/text_button"
                 android:id="@+id/nineButton"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:fontFamily="@font/roboto_mono"
-                android:text="@string/nine_text"
-                android:textColor="@color/charcoal_blue"
-                android:textSize="24sp"
-                app:cornerRadius="0dp" />
+                android:text="@string/nine_text"/>
 
             <Button
                 android:id="@+id/sixButton"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:fontFamily="@font/roboto_mono"
-                android:text="@string/six_text"
-                android:textColor="@color/charcoal_blue"
-                android:textSize="24sp"
-                app:cornerRadius="0dp" />
+                style="@style/text_button"
+                android:text="@string/six_text" />
 
             <Button
                 android:id="@+id/threeButton"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:text="@string/three_text"
-                android:textColor="@color/charcoal_blue"
-                app:cornerRadius="0dp" />
+                style="@style/text_button"
+                android:text="@string/three_text" />
 
             <Button
                 android:id="@+id/decimalButton"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:text="@string/decimal_text"
-                android:textColor="@color/charcoal_blue"
-                app:cornerRadius="0dp" />
+                style="@style/text_button"
+                android:text="@string/decimal_text" />
         </LinearLayout>
 
         <LinearLayout
@@ -342,63 +222,28 @@
 
             <Button
                 android:id="@+id/percentButton"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:background="@android:color/transparent"
-                android:fontFamily="@font/fa_solid_900"
-                android:text="@string/percent_text"
-                android:textColor="@color/charcoal_blue"
-                app:cornerRadius="0dp" />
+                style="@style/font_icon_button"
+                android:text="@string/percent_text" />
 
             <Button
                 android:id="@+id/divideButton"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:background="@android:color/transparent"
-                android:fontFamily="@font/fa_solid_900"
-                android:text="@string/divide_text"
-                android:textColor="@color/charcoal_blue"
-                app:cornerRadius="0dp" />
+                style="@style/font_icon_button"
+                android:text="@string/divide_text" />
 
             <Button
                 android:id="@+id/multiplyButton"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:background="@android:color/transparent"
-                android:fontFamily="@font/fa_solid_900"
-                android:text="@string/multiply_text"
-                android:textColor="@color/charcoal_blue"
-                app:cornerRadius="0dp" />
+                style="@style/font_icon_button"
+                android:text="@string/multiply_text" />
 
             <Button
                 android:id="@+id/minusButton"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:background="@android:color/transparent"
-                android:fontFamily="@font/fa_solid_900"
-                android:text="@string/minus_text"
-                android:textColor="@color/charcoal_blue"
-                app:cornerRadius="0dp" />
+                style="@style/font_icon_button"
+                android:text="@string/minus_text" />
 
             <Button
                 android:id="@+id/plusButton"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:background="@android:color/transparent"
-                android:fontFamily="@font/fa_solid_900"
-                android:text="@string/plus_text"
-                android:textColor="@color/charcoal_blue"
-                app:cornerRadius="0dp" />
+                style="@style/font_icon_button"
+                android:text="@string/plus_text" />
         </LinearLayout>
 
         <LinearLayout
@@ -410,37 +255,19 @@
 
             <Button
                 android:id="@+id/clearButton"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:text="@string/clear_text"
-                android:textColor="@color/charcoal_blue"
-                app:cornerRadius="0dp" />
+                style="@style/font_icon_button"
+                android:text="@string/clear_text" />
 
             <Button
                 android:id="@+id/deleteButton"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:fontFamily="@font/fa_solid_900"
-                android:text="@string/delete_text"
-                android:textColor="@color/charcoal_blue"
-                android:textSize="24sp"
-                app:cornerRadius="0dp" />
+                style="@style/font_icon_button"
+                android:text="@string/delete_text" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/equalsButton"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="3"
-                android:background="@drawable/large_equals_button_background"
-                android:fontFamily="@font/fa_solid_900"
-                android:text="@string/equals_text"
-                android:textColor="@color/white"
-                app:cornerRadius="0dp"
-                app:rippleColor="@color/slate_blue"/>
+                style="@style/large_gradient_button"
+                android:text="@string/equals_text"/>
+
         </LinearLayout>
     </LinearLayout>
 
