@@ -78,13 +78,6 @@
 
 
     <!--Landscape-->
-    <style name="memory_button_land" parent="calculator_button">
-        <item name="android:textColor">@color/charcoal_blue</item>
-        <item name="android:fontFamily">@font/roboto_mono</item>
-        <item name="android:textSize">22sp</item>
-        <item name="cornerRadius">0dp</item>
-    </style>
-
     <style name="result_text_land" parent="result_text">
         <item name="android:layout_marginTop">@dimen/result_text_margin_top_land</item>
     </style>
