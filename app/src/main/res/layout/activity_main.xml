@@ -154,10 +154,17 @@
             android:layout_weight="1"
             android:orientation="vertical">
 
-            <Button
+            <ImageButton
                 android:id="@+id/sqrButton"
                 style="@style/font_icon_button"
-                android:text="@string/square_text" />
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/inverse_function_description"
+                android:padding="24dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/squared" />
 
             <Button
                 style="@style/text_button"
@@ -187,10 +194,17 @@
             android:layout_weight="1"
             android:orientation="vertical">
 
-            <Button
+            <ImageButton
                 android:id="@+id/cubeButton"
                 style="@style/font_icon_button"
-                android:text="@string/cube_text"/>
+                android:contentDescription="@string/inverse_function_description"
+                android:layout_weight="1"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:padding="24dp"
+                android:src="@drawable/cubed"
+                android:layout_height="0dp" />
 
             <Button
                 style="@style/text_button"

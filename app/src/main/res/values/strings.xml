@@ -41,4 +41,5 @@
     <string name="sin_text">sin</string>
     <string name="cos_text">cos</string>
     <string name="tan_text">tan</string>
+    <string name="inverse_function_description">Inverse funciton</string>
 </resources>

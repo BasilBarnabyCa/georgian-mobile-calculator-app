@@ -10,7 +10,7 @@
     tools:context=".MainActivity">
 
     <View
-        android:id="@+id/nonSafeArea"
+        android:id="@+id/nonSafeAreaLeft"
         android:layout_width="@dimen/non_safe_area_width"
         android:layout_height="0dp"
         app:layout_constraintTop_toTopOf="parent"
@@ -24,8 +24,8 @@
         android:orientation="vertical"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@id/nonSafeArea"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintStart_toEndOf="@id/nonSafeAreaLeft"
+        app:layout_constraintEnd_toStartOf="@id/nonSafeAreaRight">
 
         <LinearLayout
             android:id="@+id/resultScreenLayout"
@@ -74,10 +74,17 @@
                     style="@style/scientific_text_button"
                     android:text="@string/open_bracket_text" />
 
-                <Button
+                <ImageButton
                     android:id="@+id/piButton"
-                    style="@style/scientific_text_button"
-                    android:text="@string/pi_text" />
+                    style="@style/font_icon_button"
+                    android:contentDescription="@string/inverse_function_description"
+                    android:layout_weight="1"
+                    android:scaleType="fitCenter"
+                    android:adjustViewBounds="true"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:padding="14dp"
+                    android:src="@drawable/pi"
+                    android:layout_height="0dp" />
 
                 <Button
                     android:id="@+id/randButton"
@@ -103,10 +110,17 @@
                     style="@style/scientific_text_button"
                     android:text="@string/close_bracket_text" />
 
-                <Button
-                    android:id="@+id/oneOverXButton"
+                <ImageButton
+                    android:id="@+id/inverseButton"
                     style="@style/font_icon_button"
-                    android:text="1/x" />
+                    android:contentDescription="@string/inverse_function_description"
+                    android:layout_weight="1"
+                    android:scaleType="fitCenter"
+                    android:adjustViewBounds="true"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:padding="20dp"
+                    android:src="@drawable/inverse"
+                    android:layout_height="0dp" />
 
                 <Button
                     android:id="@+id/sinButton"
@@ -127,15 +141,23 @@
                     style="@style/scientific_text_button"
                     android:text="@string/memory_recall_text" />
 
-                <Button
+                <ImageButton
                     android:id="@+id/sqrButton"
                     style="@style/font_icon_button"
-                    android:text="sqr" />
+                    android:contentDescription="@string/inverse_function_description"
+                    android:layout_weight="1"
+                    android:scaleType="fitCenter"
+                    android:adjustViewBounds="true"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:padding="14dp"
+                    android:src="@drawable/squared"
+                    android:layout_height="0dp" />
+
 
                 <Button
                     android:id="@+id/squareRootButton"
                     style="@style/font_icon_button"
-                    android:text="sqrt" />
+                    android:text="@string/square_root_text" />
 
                 <Button
                     android:id="@+id/cosButton"
@@ -156,15 +178,30 @@
                     style="@style/scientific_text_button"
                     android:text="@string/memory_save_text" />
 
-                <Button
+                <ImageButton
                     android:id="@+id/cubeButton"
                     style="@style/font_icon_button"
-                    android:text="cb" />
+                    android:contentDescription="@string/inverse_function_description"
+                    android:layout_weight="1"
+                    android:scaleType="fitCenter"
+                    android:adjustViewBounds="true"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:padding="14dp"
+                    android:src="@drawable/cubed"
+                    android:layout_height="0dp" />
 
-                <Button
+                <ImageButton
                     android:id="@+id/cubeRootButton"
                     style="@style/font_icon_button"
-                    android:text="cbr" />
+                    android:contentDescription="@string/inverse_function_description"
+                    android:layout_weight="1"
+                    android:scaleType="fitCenter"
+                    android:adjustViewBounds="true"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:padding="14dp"
+                    android:src="@drawable/cubed_root"
+                    android:layout_height="0dp" />
+
 
                 <Button
                     android:id="@+id/tangentButton"
@@ -185,20 +222,42 @@
                     style="@style/scientific_text_button"
                     android:text="@string/memory_clear_text" />
 
-                <Button
-                    android:id="@+id/powerOfXButton"
+                <ImageButton
+                    android:id="@+id/exponentButton"
                     style="@style/font_icon_button"
-                    android:text="Xy" />
+                    android:contentDescription="@string/inverse_function_description"
+                    android:layout_weight="1"
+                    android:scaleType="fitCenter"
+                    android:adjustViewBounds="true"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:padding="14dp"
+                    android:src="@drawable/exponent"
+                    android:layout_height="0dp" />
 
-                <Button
-                    android:id="@+id/rootOfXButton"
+                <ImageButton
+                    android:id="@+id/ythRootButton"
                     style="@style/font_icon_button"
-                    android:text="rx" />
+                    android:contentDescription="@string/inverse_function_description"
+                    android:layout_weight="1"
+                    android:scaleType="fitCenter"
+                    android:adjustViewBounds="true"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:padding="14dp"
+                    android:src="@drawable/yth_root"
+                    android:layout_height="0dp" />
 
-                <Button
-                    android:id="@+id/tenToXButton"
+                <ImageButton
+                    android:id="@+id/antilogarithm"
                     style="@style/font_icon_button"
-                    android:text="10x" />
+                    android:contentDescription="@string/inverse_function_description"
+                    android:layout_weight="1"
+                    android:scaleType="fitCenter"
+                    android:adjustViewBounds="true"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:padding="14dp"
+                    android:src="@drawable/antilogarithm"
+                    android:layout_height="0dp" />
+
 
             </LinearLayout>
 
@@ -347,30 +406,16 @@
 
             </LinearLayout>
 
-<!--            <LinearLayout-->
-<!--                android:id="@+id/fifthColumnLayout"-->
-<!--                android:layout_width="0dp"-->
-<!--                android:layout_height="match_parent"-->
-<!--                android:layout_weight="1"-->
-<!--                android:orientation="vertical">-->
-
-<!--                <Button-->
-<!--                    android:id="@+id/clearButton"-->
-<!--                    style="@style/font_icon_button"-->
-<!--                    android:text="@string/clear_text" />-->
-
-<!--                <Button-->
-<!--                    android:id="@+id/deleteButton"-->
-<!--                    style="@style/font_icon_button"-->
-<!--                    android:text="@string/delete_text" />-->
-
-<!--                <androidx.appcompat.widget.AppCompatButton-->
-<!--                    android:id="@+id/equalsButton"-->
-<!--                    style="@style/large_gradient_button"-->
-<!--                    android:text="@string/equals_text" />-->
-
-<!--            </LinearLayout>-->
         </LinearLayout>
+
     </LinearLayout>
+
+    <View
+        android:id="@+id/nonSafeAreaRight"
+        android:layout_width="@dimen/non_safe_area_width"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
