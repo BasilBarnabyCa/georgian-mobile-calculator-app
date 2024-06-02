@@ -2,9 +2,35 @@
     <string name="app_name">Calculator</string>
     <string name="default_value">14</string>
     <string name="example_formula">"15 + 2 – 3"</string>
-    <string name="m_plus">"M+"</string>
-    <string name="m_minus">"M-"</string>
-    <string name="m_recall">"MR"</string>
-    <string name="m_save">"MS"</string>
-    <string name="m_clear">"MC"</string>
+
+    <string name="memory_plus_text">"M+"</string>
+    <string name="memory_minus_text">"M-"</string>
+    <string name="memory_recall_text">"MR"</string>
+    <string name="memory_save_text">"MS"</string>
+    <string name="memory_clear_text">"MC"</string>
+
+    <string name="plus_text">"\u002b"</string>
+    <string name="minus_text">"\uf068"</string>
+    <string name="multiply_text">"\uf00d"</string>
+    <string name="divide_text">"\uf529"</string>
+    <string name="percent_text">"\u0025"</string>
+    <string name="equals_text">"\u003d"</string>
+    <string name="plus_minus_text">"\ue43c"</string>
+    <string name="delete_text">"\uf2ea"</string>
+    <string name="clear_text">"C"</string>
+    <string name="square_root_text">"\uf698"</string>
+    <string name="square_text">"X2"</string>
+    <string name="cube_text">"C3"</string>
+
+    <string name="one_text">"1"</string>
+    <string name="two_text">"2"</string>
+    <string name="three_text">"3"</string>
+    <string name="four_text">"4"</string>
+    <string name="five_text">"5"</string>
+    <string name="six_text">"6"</string>
+    <string name="seven_text">"7"</string>
+    <string name="eight_text">"8"</string>
+    <string name="nine_text">"9"</string>
+    <string name="zero_text">"0"</string>
+    <string name="decimal_text">"."</string>
 </resources>

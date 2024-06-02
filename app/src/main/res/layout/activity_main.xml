@@ -29,7 +29,7 @@
             android:layout_marginTop="350dp"
             android:backgroundTint="@color/white"
             android:padding="0dp"
-            android:text="MR"
+            android:text="@string/memory_recall_text"
             android:textColor="@color/slate_blue"
             app:cornerRadius="50dp"
             app:rippleColor="@color/ripple_color"/>
@@ -51,6 +51,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/result_text_margin_top"
+            android:fontFamily="@font/roboto_mono_medium"
             android:paddingStart="@dimen/padding_x"
             android:paddingEnd="@dimen/padding_x"
             android:text="@string/default_value"
@@ -63,6 +64,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/formula_text_margin_top"
+            android:fontFamily="@font/roboto_mono"
             android:paddingStart="@dimen/small_text_padding_x"
             android:paddingEnd="@dimen/small_text_padding_x"
             android:text="@string/example_formula"
@@ -94,7 +96,7 @@
                 style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:layout_width="@dimen/m_button_size"
                 android:layout_height="@dimen/m_button_size"
-                android:text="@string/m_plus"
+                android:text="@string/memory_plus_text"
                 android:textColor="@color/charcoal_blue"
                 app:cornerRadius="0dp" />
 
@@ -103,7 +105,7 @@
                 style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:layout_width="@dimen/m_button_size"
                 android:layout_height="@dimen/m_button_size"
-                android:text="@string/m_minus"
+                android:text="@string/memory_minus_text"
                 android:textColor="@color/charcoal_blue"
                 app:cornerRadius="0dp" />
 
@@ -122,7 +124,7 @@
                 style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:layout_width="@dimen/m_button_size"
                 android:layout_height="@dimen/m_button_size"
-                android:text="@string/m_save"
+                android:text="@string/memory_save_text"
                 android:textColor="@color/charcoal_blue"
                 app:cornerRadius="0dp" />
 
@@ -131,7 +133,7 @@
                 style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:layout_width="@dimen/m_button_size"
                 android:layout_height="@dimen/m_button_size"
-                android:text="@string/m_clear"
+                android:text="@string/memory_clear_text"
                 android:textColor="@color/charcoal_blue"
                 app:cornerRadius="0dp" />
 
@@ -164,7 +166,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:text="sqrt"
+                android:fontFamily="@font/fa_solid_900"
+                android:text="@string/square_root_text"
                 android:textColor="@color/charcoal_blue"
                 app:cornerRadius="0dp" />
 
@@ -174,7 +177,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:text="7"
+                android:text="@string/seven_text"
                 android:textColor="@color/charcoal_blue"
                 app:cornerRadius="0dp" />
 
@@ -184,7 +187,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:text="4"
+                android:text="@string/four_text"
                 android:textColor="@color/charcoal_blue"
                 app:cornerRadius="0dp" />
 
@@ -194,7 +197,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:text="1"
+                android:text="@string/one_text"
                 android:textColor="@color/charcoal_blue"
                 app:cornerRadius="0dp" />
 
@@ -204,7 +207,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:text="+"
+                android:fontFamily="@font/fa_solid_900"
+                android:text="@string/plus_minus_text"
                 android:textColor="@color/charcoal_blue"
                 app:cornerRadius="0dp" />
         </LinearLayout>
@@ -222,7 +226,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:text="sqr"
+                android:text="@string/square_text"
                 android:textColor="@color/charcoal_blue"
                 app:cornerRadius="0dp" />
 
@@ -232,7 +236,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:text="8"
+                android:text="@string/eight_text"
                 android:textColor="@color/charcoal_blue"
                 app:cornerRadius="0dp" />
 
@@ -242,7 +246,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:text="5"
+                android:text="@string/five_text"
                 android:textColor="@color/charcoal_blue"
                 app:cornerRadius="0dp" />
 
@@ -252,7 +256,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:text="2"
+                android:text="@string/two_text"
                 android:textColor="@color/charcoal_blue"
                 app:cornerRadius="0dp" />
 
@@ -262,7 +266,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:text="0"
+                android:text="@string/zero_text"
                 android:textColor="@color/charcoal_blue"
                 app:cornerRadius="0dp" />
         </LinearLayout>
@@ -280,7 +284,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:text="cube"
+                android:text="@string/cube_text"
                 android:textColor="@color/charcoal_blue"
                 app:cornerRadius="0dp" />
 
@@ -290,8 +294,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:text="9"
+                android:fontFamily="@font/roboto_mono"
+                android:text="@string/nine_text"
                 android:textColor="@color/charcoal_blue"
+                android:textSize="24sp"
                 app:cornerRadius="0dp" />
 
             <Button
@@ -300,8 +306,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:text="6"
+                android:fontFamily="@font/roboto_mono"
+                android:text="@string/six_text"
                 android:textColor="@color/charcoal_blue"
+                android:textSize="24sp"
                 app:cornerRadius="0dp" />
 
             <Button
@@ -310,7 +318,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:text="3"
+                android:text="@string/three_text"
                 android:textColor="@color/charcoal_blue"
                 app:cornerRadius="0dp" />
 
@@ -320,7 +328,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:text="."
+                android:text="@string/decimal_text"
                 android:textColor="@color/charcoal_blue"
                 app:cornerRadius="0dp" />
         </LinearLayout>
@@ -338,7 +346,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:text="%"
+                android:background="@android:color/transparent"
+                android:fontFamily="@font/fa_solid_900"
+                android:text="@string/percent_text"
                 android:textColor="@color/charcoal_blue"
                 app:cornerRadius="0dp" />
 
@@ -348,27 +358,33 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:text="div"
+                android:background="@android:color/transparent"
+                android:fontFamily="@font/fa_solid_900"
+                android:text="@string/divide_text"
                 android:textColor="@color/charcoal_blue"
                 app:cornerRadius="0dp" />
 
             <Button
-                android:id="@+id/multiplicationButton"
+                android:id="@+id/multiplyButton"
                 style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:text="x"
+                android:background="@android:color/transparent"
+                android:fontFamily="@font/fa_solid_900"
+                android:text="@string/multiply_text"
                 android:textColor="@color/charcoal_blue"
                 app:cornerRadius="0dp" />
 
             <Button
-                android:id="@+id/subtractionButton"
+                android:id="@+id/minusButton"
                 style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:text="-"
+                android:background="@android:color/transparent"
+                android:fontFamily="@font/fa_solid_900"
+                android:text="@string/minus_text"
                 android:textColor="@color/charcoal_blue"
                 app:cornerRadius="0dp" />
 
@@ -378,7 +394,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:text="+"
+                android:background="@android:color/transparent"
+                android:fontFamily="@font/fa_solid_900"
+                android:text="@string/plus_text"
                 android:textColor="@color/charcoal_blue"
                 app:cornerRadius="0dp" />
         </LinearLayout>
@@ -396,7 +414,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:text="C"
+                android:text="@string/clear_text"
                 android:textColor="@color/charcoal_blue"
                 app:cornerRadius="0dp" />
 
@@ -406,8 +424,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:text="del"
+                android:fontFamily="@font/fa_solid_900"
+                android:text="@string/delete_text"
                 android:textColor="@color/charcoal_blue"
+                android:textSize="24sp"
                 app:cornerRadius="0dp" />
 
             <androidx.appcompat.widget.AppCompatButton
@@ -416,7 +436,8 @@
                 android:layout_height="0dp"
                 android:layout_weight="3"
                 android:background="@drawable/large_equals_button_background"
-                android:text="="
+                android:fontFamily="@font/fa_solid_900"
+                android:text="@string/equals_text"
                 android:textColor="@color/white"
                 app:cornerRadius="0dp"
                 app:rippleColor="@color/slate_blue"/>
