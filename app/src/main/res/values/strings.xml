@@ -49,4 +49,5 @@
     <string name="exponentiation_button_description">Exponentiation or power function</string>
     <string name="yth_root_button_description">Yth root function</string>
     <string name="antilogarithm_button_description">Antilogarithm function</string>
+    <string name="delete_button_description">Delete right most character</string>
 </resources>

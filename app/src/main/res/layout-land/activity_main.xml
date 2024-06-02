@@ -342,10 +342,11 @@
                     style="@style/font_icon_button"
                     android:text="@string/clear_text" />
 
-                <Button
+                <ImageButton
                     android:id="@+id/deleteButton"
-                    style="@style/font_icon_button"
-                    android:text="@string/delete_text" />
+                    style="@style/image_button_land"
+                    android:contentDescription="@string/delete_button_description"
+                    android:src="@drawable/delete" />
 
                 <Button
                     android:id="@+id/percentButton"
