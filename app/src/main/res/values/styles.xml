@@ -53,6 +53,21 @@
         <item name="rippleColor">@color/slate_blue</item>
     </style>
 
+    <style name="image_button" parent="Widget.MaterialComponents.Button">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:adjustViewBounds">true</item>
+        <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
+        <item name="android:padding">24dp</item>
+        <item name="android:scaleType">fitCenter</item>
+        <item name="rippleColor">@color/ripple_color</item>
+    </style>
+
+    <style name="image_button_portrait" parent="image_button">
+        <item name="android:padding">@dimen/image_button_padding</item>
+    </style>
+
     <style name="screen_text">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
@@ -80,14 +95,6 @@
 
 
     <!--Landscape-->
-    <style name="result_text_land" parent="result_text">
-        <item name="android:layout_marginTop">@dimen/result_text_margin_top_land</item>
-    </style>
-
-    <style name="formula_text_land" parent="formula_text">
-        <item name="android:layout_marginTop">@dimen/formula_text_margin_top_land</item>
-    </style>
-
     <style name="gradient_button_land" parent="">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">0dp</item>
@@ -117,4 +124,17 @@
         <item name="cornerRadius">@dimen/gradient_corner_radius_size</item>
         <item name="rippleColor">@color/ripple_color</item>
     </style>
+
+    <style name="image_button_land" parent="image_button">
+        <item name="android:padding">@dimen/image_button_padding_land</item>
+    </style>
+
+    <style name="result_text_land" parent="result_text">
+        <item name="android:layout_marginTop">@dimen/result_text_margin_top_land</item>
+    </style>
+
+    <style name="formula_text_land" parent="formula_text">
+        <item name="android:layout_marginTop">@dimen/formula_text_margin_top_land</item>
+    </style>
+
 </resources>

@@ -41,5 +41,12 @@
     <string name="sin_text">sin</string>
     <string name="cos_text">cos</string>
     <string name="tan_text">tan</string>
-    <string name="inverse_function_description">Inverse funciton</string>
+    <string name="squared_button_description">Squared function</string>
+    <string name="cubed_button_description">Cubed function</string>
+    <string name="inverse_function_description">Inverse function</string>
+    <string name="pi_button_description">Pi function</string>
+    <string name="cubed_root_button_description">Cubed root function</string>
+    <string name="exponentiation_button_description">Exponentiation or power function</string>
+    <string name="yth_root_button_description">Yth root function</string>
+    <string name="antilogarithm_button_description">Antilogarithm function</string>
 </resources>

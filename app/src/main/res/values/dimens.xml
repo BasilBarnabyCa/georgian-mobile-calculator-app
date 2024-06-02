@@ -21,10 +21,12 @@
     <dimen name="mr_button_padding">0dp</dimen>
     <dimen name="corner_radius_size">0dp</dimen>
     <dimen name="gradient_corner_radius_size">50dp</dimen>
+    <dimen name="image_button_padding">24dp</dimen>
 
     <dimen name="result_screen_layout_height_land">150dp</dimen>
     <dimen name="result_text_margin_top_land">0dp</dimen>
     <dimen name="formula_text_margin_top_land">5dp</dimen>
     <dimen name="scientific_text_size">20sp</dimen>
     <dimen name="non_safe_area_width">45dp</dimen>
+    <dimen name="image_button_padding_land">14dp</dimen>
 </resources>

@@ -156,14 +156,8 @@
 
             <ImageButton
                 android:id="@+id/sqrButton"
-                style="@style/font_icon_button"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:adjustViewBounds="true"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:contentDescription="@string/inverse_function_description"
-                android:padding="24dp"
-                android:scaleType="fitCenter"
+                style="@style/image_button"
+                android:contentDescription="@string/squared_button_description"
                 android:src="@drawable/squared" />
 
             <Button
@@ -196,15 +190,9 @@
 
             <ImageButton
                 android:id="@+id/cubeButton"
-                style="@style/font_icon_button"
-                android:contentDescription="@string/inverse_function_description"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                android:adjustViewBounds="true"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:padding="24dp"
-                android:src="@drawable/cubed"
-                android:layout_height="0dp" />
+                style="@style/image_button_portrait"
+                android:contentDescription="@string/cubed_button_description"
+                android:src="@drawable/cubed" />
 
             <Button
                 style="@style/text_button"

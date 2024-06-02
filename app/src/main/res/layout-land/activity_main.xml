@@ -76,15 +76,10 @@
 
                 <ImageButton
                     android:id="@+id/piButton"
-                    style="@style/font_icon_button"
-                    android:contentDescription="@string/inverse_function_description"
-                    android:layout_weight="1"
-                    android:scaleType="fitCenter"
-                    android:adjustViewBounds="true"
-                    android:background="?attr/selectableItemBackgroundBorderless"
+                    style="@style/image_button_land"
+                    android:contentDescription="@string/pi_button_description"
                     android:padding="14dp"
-                    android:src="@drawable/pi"
-                    android:layout_height="0dp" />
+                    android:src="@drawable/pi" />
 
                 <Button
                     android:id="@+id/randButton"
@@ -112,15 +107,10 @@
 
                 <ImageButton
                     android:id="@+id/inverseButton"
-                    style="@style/font_icon_button"
+                    style="@style/image_button_land"
                     android:contentDescription="@string/inverse_function_description"
-                    android:layout_weight="1"
-                    android:scaleType="fitCenter"
-                    android:adjustViewBounds="true"
-                    android:background="?attr/selectableItemBackgroundBorderless"
                     android:padding="20dp"
-                    android:src="@drawable/inverse"
-                    android:layout_height="0dp" />
+                    android:src="@drawable/inverse"/>
 
                 <Button
                     android:id="@+id/sinButton"
@@ -143,15 +133,9 @@
 
                 <ImageButton
                     android:id="@+id/sqrButton"
-                    style="@style/font_icon_button"
-                    android:contentDescription="@string/inverse_function_description"
-                    android:layout_weight="1"
-                    android:scaleType="fitCenter"
-                    android:adjustViewBounds="true"
-                    android:background="?attr/selectableItemBackgroundBorderless"
-                    android:padding="14dp"
-                    android:src="@drawable/squared"
-                    android:layout_height="0dp" />
+                    style="@style/image_button_land"
+                    android:contentDescription="@string/squared_button_description"
+                    android:src="@drawable/squared" />
 
 
                 <Button
@@ -180,27 +164,15 @@
 
                 <ImageButton
                     android:id="@+id/cubeButton"
-                    style="@style/font_icon_button"
-                    android:contentDescription="@string/inverse_function_description"
-                    android:layout_weight="1"
-                    android:scaleType="fitCenter"
-                    android:adjustViewBounds="true"
-                    android:background="?attr/selectableItemBackgroundBorderless"
-                    android:padding="14dp"
-                    android:src="@drawable/cubed"
-                    android:layout_height="0dp" />
+                    style="@style/image_button_land"
+                    android:contentDescription="@string/cubed_button_description"
+                    android:src="@drawable/cubed"/>
 
                 <ImageButton
                     android:id="@+id/cubeRootButton"
-                    style="@style/font_icon_button"
-                    android:contentDescription="@string/inverse_function_description"
-                    android:layout_weight="1"
-                    android:scaleType="fitCenter"
-                    android:adjustViewBounds="true"
-                    android:background="?attr/selectableItemBackgroundBorderless"
-                    android:padding="14dp"
-                    android:src="@drawable/cubed_root"
-                    android:layout_height="0dp" />
+                    style="@style/image_button_land"
+                    android:contentDescription="@string/cubed_root_button_description"
+                    android:src="@drawable/cubed_root"/>
 
 
                 <Button
@@ -224,40 +196,21 @@
 
                 <ImageButton
                     android:id="@+id/exponentButton"
-                    style="@style/font_icon_button"
-                    android:contentDescription="@string/inverse_function_description"
-                    android:layout_weight="1"
-                    android:scaleType="fitCenter"
-                    android:adjustViewBounds="true"
-                    android:background="?attr/selectableItemBackgroundBorderless"
-                    android:padding="14dp"
-                    android:src="@drawable/exponent"
-                    android:layout_height="0dp" />
+                    style="@style/image_button_land"
+                    android:contentDescription="@string/exponentiation_button_description"
+                    android:src="@drawable/exponent" />
 
                 <ImageButton
                     android:id="@+id/ythRootButton"
-                    style="@style/font_icon_button"
-                    android:contentDescription="@string/inverse_function_description"
-                    android:layout_weight="1"
-                    android:scaleType="fitCenter"
-                    android:adjustViewBounds="true"
-                    android:background="?attr/selectableItemBackgroundBorderless"
-                    android:padding="14dp"
-                    android:src="@drawable/yth_root"
-                    android:layout_height="0dp" />
+                    style="@style/image_button_land"
+                    android:contentDescription="@string/yth_root_button_description"
+                    android:src="@drawable/yth_root" />
 
                 <ImageButton
                     android:id="@+id/antilogarithm"
-                    style="@style/font_icon_button"
-                    android:contentDescription="@string/inverse_function_description"
-                    android:layout_weight="1"
-                    android:scaleType="fitCenter"
-                    android:adjustViewBounds="true"
-                    android:background="?attr/selectableItemBackgroundBorderless"
-                    android:padding="14dp"
-                    android:src="@drawable/antilogarithm"
-                    android:layout_height="0dp" />
-
+                    style="@style/image_button_land"
+                    android:contentDescription="@string/antilogarithm_button_description"
+                    android:src="@drawable/antilogarithm" />
 
             </LinearLayout>
 
