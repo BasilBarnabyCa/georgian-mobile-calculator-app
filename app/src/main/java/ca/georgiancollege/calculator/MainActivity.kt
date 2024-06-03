@@ -4,6 +4,7 @@
  * Assignment: 1 - Calculator App UX Design
  * Date: June 2, 2024
  * Description: This is a calculator app ux design that displays its elements in portrait and landscape.
+ * Filename: Calculator App
  * Target Device: Google Pixel 8 Pro
  * Version: 0.1
  */
