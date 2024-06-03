@@ -29,4 +29,5 @@
     <dimen name="scientific_text_size">20sp</dimen>
     <dimen name="non_safe_area_width">45dp</dimen>
     <dimen name="image_button_padding_land">14dp</dimen>
+    <dimen name="small_corner_radius_size">20dp</dimen>
 </resources>

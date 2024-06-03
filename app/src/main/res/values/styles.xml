@@ -121,7 +121,7 @@
         <item name="android:fontFamily">@font/roboto_mono_medium</item>
         <item name="android:textSize">@dimen/font_icon_text_size</item>
         <item name="android:textColor">@color/slate_blue</item>
-        <item name="cornerRadius">@dimen/gradient_corner_radius_size</item>
+        <item name="cornerRadius">@dimen/small_corner_radius_size</item>
         <item name="rippleColor">@color/ripple_color</item>
     </style>
 
