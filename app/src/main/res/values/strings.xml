@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Calculator</string>
-    <string name="default_value">14</string>
-    <string name="example_formula">"15 + 2 – 3"</string>
+    <string name="default_value">0</string>
+    <string name="example_formula">""</string>
 
     <string name="memory_plus_text">"M+"</string>
     <string name="memory_minus_text">"M-"</string>
