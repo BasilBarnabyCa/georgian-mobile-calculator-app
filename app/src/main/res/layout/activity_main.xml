@@ -100,7 +100,7 @@
                 android:id="@+id/mClearButton"
                 style="@style/memory_button"
                 android:text="@string/memory_clear_text"
-                android:tag="" />
+                android:tag="MC" />
 
         </LinearLayout>
 
@@ -128,27 +128,32 @@
             <Button
                 android:id="@+id/squareRootButton"
                 style="@style/font_icon_button"
-                android:text="@string/square_root_text" />
+                android:text="@string/square_root_text"
+                android:tag="square_root" />
 
             <Button
                 android:id="@+id/sevenButton"
                 style="@style/text_button"
-                android:text="@string/seven_text" />
+                android:text="@string/seven_text"
+                android:tag="7" />
 
             <Button
                 android:id="@+id/fourButton"
                 style="@style/text_button"
-                android:text="@string/four_text"/>
+                android:text="@string/four_text"
+                android:tag="4" />
 
             <Button
                 android:id="@+id/oneButton"
                 style="@style/text_button"
-                android:text="@string/one_text" />
+                android:text="@string/one_text"
+                android:tag="1" />
 
             <Button
                 android:id="@+id/plusMinusButton"
                 style="@style/font_icon_button"
-                android:text="@string/plus_minus_text"/>
+                android:text="@string/plus_minus_text"
+                android:tag="plus_minus" />
 
         </LinearLayout>
 

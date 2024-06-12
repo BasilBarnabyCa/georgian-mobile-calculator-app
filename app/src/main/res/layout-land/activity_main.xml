@@ -74,7 +74,7 @@
                     android:id="@+id/openBracketButton"
                     style="@style/scientific_text_button"
                     android:text="@string/open_bracket_text"
-                    android:tag="openBracket" />
+                    android:tag="open_bracket" />
 
                 <ImageButton
                     android:id="@+id/piButton"
@@ -109,7 +109,7 @@
                     android:id="@+id/closeBracketButton"
                     style="@style/scientific_text_button"
                     android:text="@string/close_bracket_text"
-                    android:tag="closeBracket" />
+                    android:tag="close_bracket" />
 
                 <ImageButton
                     android:id="@+id/inverseButton"
@@ -152,7 +152,7 @@
                     android:id="@+id/squareRootButton"
                     style="@style/font_icon_button"
                     android:text="@string/square_root_text"
-                    android:tag="squareRoot" />
+                    android:tag="square_root" />
 
                 <Button
                     android:id="@+id/cosButton"
@@ -187,7 +187,7 @@
                     style="@style/image_button_land"
                     android:contentDescription="@string/cubed_root_button_description"
                     android:src="@drawable/cubed_root"
-                    android:tag="cubeRoot" />
+                    android:tag="cube_root" />
 
 
                 <Button
@@ -223,7 +223,7 @@
                     style="@style/image_button_land"
                     android:contentDescription="@string/yth_root_button_description"
                     android:src="@drawable/yth_root"
-                    android:tag="ythRoot" />
+                    android:tag="yth_root" />
 
                 <ImageButton
                     android:id="@+id/antilogarithm"
@@ -263,7 +263,7 @@
                     android:id="@+id/plusMinusButton"
                     style="@style/font_icon_button"
                     android:text="@string/plus_minus_text"
-                    android:tag="plusMinus" />
+                    android:tag="plus_minus" />
 
             </LinearLayout>
 
