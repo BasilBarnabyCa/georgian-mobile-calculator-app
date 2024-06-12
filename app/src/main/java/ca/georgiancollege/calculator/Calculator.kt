@@ -41,15 +41,15 @@ class Calculator(dataBinding: ActivityMainBinding){
         when(tag)
         {
             "." -> {
-                if(!binding.resultTextView.text.contains("."))
+                if(!binding.formulaTextView.text.contains("."))
                 {
                     result += if(result.isEmpty()) "0." else "."
-                    binding.resultTextView.text = result
+                    binding.formulaTextView.text = result
                 }
             }
             "delete" -> {
                 result = result.dropLast(1)
-                binding.resultTextView.text = if(result.isEmpty() || result == "-") "0" else result
+                binding.formulaTextView.text = if(result.isEmpty() || result == "-") "0" else result
                 result = if(result.isEmpty()) "0" else result
             }
             "plus_minus" -> {
@@ -64,21 +64,21 @@ class Calculator(dataBinding: ActivityMainBinding){
                         result = "-".plus(result)
                     }
                 }
-                binding.resultTextView.text = result
+                binding.formulaTextView.text = result
             }
             "clear" -> {
                 clearScreen()
             }
             else -> {
-                if(binding.resultTextView.text == "0")
+                if(binding.formulaTextView.text == "0")
                 {
                     result = tag
-                    binding.resultTextView.text = result
+                    binding.formulaTextView.text = result
                 }
                 else
                 {
                     result += tag
-                    binding.resultTextView.text = result
+                    binding.formulaTextView.text = result
                 }
             }
         }
@@ -87,6 +87,6 @@ class Calculator(dataBinding: ActivityMainBinding){
     private fun clearScreen()
     {
         result = "0"
-        binding.resultTextView.text = "0"
+        binding.formulaTextView.text = "0"
     }
 }
