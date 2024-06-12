@@ -33,6 +33,6 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        val calculator = Calculator(binding)
+        val calculator = Calculator(binding, this)
     }
 }

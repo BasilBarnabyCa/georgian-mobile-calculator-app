@@ -264,7 +264,7 @@
                 android:id="@+id/minusButton"
                 style="@style/font_icon_button"
                 android:text="@string/minus_text"
-                android:tag="-" />
+                android:tag="minus" />
 
             <Button
                 android:id="@+id/plusButton"

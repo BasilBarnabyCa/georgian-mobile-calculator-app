@@ -85,7 +85,7 @@
     </style>
 
     <style name="formula_text" parent="screen_text">
-        <item name="android:fontFamily">@font/roboto_mono</item>
+        <item name="android:fontFamily">@font/fa_solid_900 </item>
         <item name="android:layout_marginTop">@dimen/formula_text_margin_top</item>
         <item name="android:paddingStart">@dimen/small_text_padding_x</item>
         <item name="android:paddingEnd">@dimen/small_text_padding_x</item>

@@ -1,14 +1,21 @@
 package ca.georgiancollege.calculator
 
+import android.content.Context
 import ca.georgiancollege.calculator.databinding.ActivityMainBinding
 
-class Calculator(dataBinding: ActivityMainBinding){
+class Calculator(dataBinding: ActivityMainBinding, context: Context) {
 
     private var binding: ActivityMainBinding = dataBinding
-    private var result: String
+    private var formula: String
+    private val operatorMap = mapOf(
+        "plus" to context.getString(R.string.plus_text),
+        "minus" to context.getString(R.string.minus_text),
+        "multiply" to context.getString(R.string.multiply_text),
+        "divide" to context.getString(R.string.divide_text)
+    )
 
     init {
-        result = "0"
+        formula = "0"
         createButtons()
     }
 
@@ -30,63 +37,87 @@ class Calculator(dataBinding: ActivityMainBinding){
             binding.plusMinusButton
         )
 
-        operandButtons.forEach { it.setOnClickListener { operandPressHandler(it.tag as String) } }
+        val operatorButtons = arrayOf(
+            binding.plusButton,
+            binding.minusButton,
+            binding.multiplyButton,
+            binding.divideButton
+        )
+
+        operandButtons.forEach { it.setOnClickListener { attachOperand(it.tag as String) } }
+        operatorButtons.forEach { it.setOnClickListener { attachOperator(it.tag as String) } }
 
         binding.clearButton.setOnClickListener {
             clearScreen()
         }
     }
 
-    private fun operandPressHandler(tag: String) {
-        when(tag)
-        {
+    private fun attachOperand(tag: String) {
+        when (tag) {
             "." -> {
-                if(!binding.formulaTextView.text.contains("."))
-                {
-                    result += if(result.isEmpty()) "0." else "."
-                    binding.formulaTextView.text = result
+                // found a way to track decimals within each number
+
+                if (!binding.formulaTextView.text.contains(".")) {
+                    formula += if (formula.isEmpty() || !formula.last().isDigit()) "0." else "."
+                    binding.formulaTextView.text = formula
                 }
             }
+
             "delete" -> {
-                result = result.dropLast(1)
-                binding.formulaTextView.text = if(result.isEmpty() || result == "-") "0" else result
-                result = if(result.isEmpty()) "0" else result
+                formula = formula.dropLast(1)
+                binding.formulaTextView.text =
+                    if (formula.isEmpty() || formula == "-") "0" else formula
+                formula = if (formula.isEmpty()) "0" else formula
             }
+
             "plus_minus" -> {
-                if(result.startsWith("-"))
-                {
-                    result = result.substring(1)
-                }
-                else
-                {
-                    if(result.isNotEmpty() && result != "0")
-                    {
-                        result = "-".plus(result)
+                if (formula.startsWith("-")) {
+                    formula = formula.substring(1)
+                } else {
+                    if (formula.isNotEmpty() && formula != "0") {
+                        formula = "-".plus(formula)
                     }
                 }
-                binding.formulaTextView.text = result
+                binding.formulaTextView.text = formula
             }
+
             "clear" -> {
                 clearScreen()
             }
+
             else -> {
-                if(binding.formulaTextView.text == "0")
-                {
-                    result = tag
-                    binding.formulaTextView.text = result
-                }
-                else
-                {
-                    result += tag
-                    binding.formulaTextView.text = result
+                if (binding.formulaTextView.text == "0") {
+                    formula = tag
+                    binding.formulaTextView.text = formula
+                } else {
+                    formula += tag
+                    binding.formulaTextView.text = formula
                 }
             }
         }
     }
 
-    private fun clearScreen()
-    {
-        result = "0"
+    private fun attachOperator(tag: String) {
+        if (tag == "plus" || tag == "minus" || tag == "multiply" || tag == "divide") {
+            if (formula.isEmpty() || !formula.last().isDigit() || formula.last() == '.') {
+                formula = formula.dropLast(1)
+            }
+
+            formula += tag
+            formatFormula()
+            binding.formulaTextView.text = formula
+        }
+    }
+
+    private fun formatFormula() {
+        operatorMap.forEach { (tag, buttonText) ->
+            formula = formula.replace(tag, buttonText)
+        }
+    }
+
+    private fun clearScreen() {
+        formula = "0"
+        formula = ""
         binding.formulaTextView.text = "0"
     }
 }
