@@ -23,7 +23,8 @@
         <Button
             android:id="@+id/mRecallButton"
             style="@style/round_memory_button"
-            android:text="@string/memory_recall_text"/>
+            android:text="@string/memory_recall_text"
+            android:tag="MR" />
 
     </FrameLayout>
 
@@ -70,12 +71,14 @@
             <Button
                 android:id="@+id/mPlusButton"
                 style="@style/memory_button"
-                android:text="@string/memory_plus_text" />
+                android:text="@string/memory_plus_text"
+                android:tag="M+" />
 
             <Button
                 android:id="@+id/mMinusButton"
                 style="@style/memory_button"
-                android:text="@string/memory_minus_text" />
+                android:text="@string/memory_minus_text"
+                android:tag="M-" />
 
         </LinearLayout>
 
@@ -90,12 +93,14 @@
             <Button
                 android:id="@+id/mSaveButton"
                 style="@style/memory_button"
-                android:text="@string/memory_save_text" />
+                android:text="@string/memory_save_text"
+                android:tag="MS" />
 
             <Button
                 android:id="@+id/mClearButton"
                 style="@style/memory_button"
-                android:text="@string/memory_clear_text" />
+                android:text="@string/memory_clear_text"
+                android:tag="" />
 
         </LinearLayout>
 
@@ -158,27 +163,32 @@
                 android:id="@+id/sqrButton"
                 style="@style/image_button"
                 android:contentDescription="@string/squared_button_description"
-                android:src="@drawable/squared" />
+                android:src="@drawable/squared"
+                android:tag="squared" />
 
             <Button
                 style="@style/text_button"
                 android:id="@+id/eightButton"
-                android:text="@string/eight_text"/>
+                android:text="@string/eight_text"
+                android:tag="8" />
 
             <Button
                 android:id="@+id/fiveButton"
                 style="@style/text_button"
-                android:text="@string/five_text" />
+                android:text="@string/five_text"
+                android:tag="5" />
 
             <Button
                 android:id="@+id/twoButton"
                 style="@style/text_button"
-                android:text="@string/two_text"/>
+                android:text="@string/two_text"
+                android:tag="2" />
 
             <Button
                 android:id="@+id/zeroButton"
                 style="@style/text_button"
-                android:text="@string/zero_text" />
+                android:text="@string/zero_text"
+                android:tag="0" />
         </LinearLayout>
 
         <LinearLayout
@@ -192,27 +202,32 @@
                 android:id="@+id/cubeButton"
                 style="@style/image_button_portrait"
                 android:contentDescription="@string/cubed_button_description"
-                android:src="@drawable/cubed" />
+                android:src="@drawable/cubed"
+                android:tag="cubed" />
 
             <Button
                 style="@style/text_button"
                 android:id="@+id/nineButton"
-                android:text="@string/nine_text"/>
+                android:text="@string/nine_text"
+                android:tag="9" />
 
             <Button
                 android:id="@+id/sixButton"
                 style="@style/text_button"
-                android:text="@string/six_text" />
+                android:text="@string/six_text"
+                android:tag="6" />
 
             <Button
                 android:id="@+id/threeButton"
                 style="@style/text_button"
-                android:text="@string/three_text" />
+                android:text="@string/three_text"
+                android:tag="3" />
 
             <Button
                 android:id="@+id/decimalButton"
                 style="@style/text_button"
-                android:text="@string/decimal_text" />
+                android:text="@string/decimal_text"
+                android:tag="." />
         </LinearLayout>
 
         <LinearLayout
@@ -225,27 +240,32 @@
             <Button
                 android:id="@+id/percentButton"
                 style="@style/font_icon_button"
-                android:text="@string/percent_text" />
+                android:text="@string/percent_text"
+                android:tag="percent" />
 
             <Button
                 android:id="@+id/divideButton"
                 style="@style/font_icon_button"
-                android:text="@string/divide_text" />
+                android:text="@string/divide_text"
+                android:tag="divide" />
 
             <Button
                 android:id="@+id/multiplyButton"
                 style="@style/font_icon_button"
-                android:text="@string/multiply_text" />
+                android:text="@string/multiply_text"
+                android:tag="multiply" />
 
             <Button
                 android:id="@+id/minusButton"
                 style="@style/font_icon_button"
-                android:text="@string/minus_text" />
+                android:text="@string/minus_text"
+                android:tag="-" />
 
             <Button
                 android:id="@+id/plusButton"
                 style="@style/font_icon_button"
-                android:text="@string/plus_text" />
+                android:text="@string/plus_text"
+                android:tag="plus" />
         </LinearLayout>
 
         <LinearLayout
@@ -258,18 +278,21 @@
             <Button
                 android:id="@+id/clearButton"
                 style="@style/font_icon_button"
-                android:text="@string/clear_text" />
+                android:text="@string/clear_text"
+                android:tag="clear" />
 
             <ImageButton
                 android:id="@+id/deleteButton"
                 style="@style/image_button"
                 android:contentDescription="@string/delete_button_description"
-                android:src="@drawable/delete" />
+                android:src="@drawable/delete"
+                android:tag="delete" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/equalsButton"
                 style="@style/large_gradient_button"
-                android:text="@string/equals_text"/>
+                android:text="@string/equals_text"
+                android:tag="equals" />
 
         </LinearLayout>
     </LinearLayout>

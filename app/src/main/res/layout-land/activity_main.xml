@@ -67,24 +67,28 @@
                 <Button
                     android:id="@+id/mPlusButton"
                     style="@style/scientific_text_button"
-                    android:text="@string/memory_plus_text" />
+                    android:text="@string/memory_plus_text"
+                    android:tag="M+" />
 
                 <Button
                     android:id="@+id/openBracketButton"
                     style="@style/scientific_text_button"
-                    android:text="@string/open_bracket_text" />
+                    android:text="@string/open_bracket_text"
+                    android:tag="openBracket" />
 
                 <ImageButton
                     android:id="@+id/piButton"
                     style="@style/image_button_land"
                     android:contentDescription="@string/pi_button_description"
                     android:padding="14dp"
-                    android:src="@drawable/pi" />
+                    android:src="@drawable/pi"
+                    android:tag="pi" />
 
                 <Button
                     android:id="@+id/randButton"
                     style="@style/scientific_text_button"
-                    android:text="@string/rand_text" />
+                    android:text="@string/rand_text"
+                    android:tag="rand" />
 
             </LinearLayout>
 
@@ -98,24 +102,28 @@
                 <Button
                     android:id="@+id/mMinusButton"
                     style="@style/scientific_text_button"
-                    android:text="@string/memory_minus_text" />
+                    android:text="@string/memory_minus_text"
+                    android:tag="" />
 
                 <Button
                     android:id="@+id/closeBracketButton"
                     style="@style/scientific_text_button"
-                    android:text="@string/close_bracket_text" />
+                    android:text="@string/close_bracket_text"
+                    android:tag="closeBracket" />
 
                 <ImageButton
                     android:id="@+id/inverseButton"
                     style="@style/image_button_land"
                     android:contentDescription="@string/inverse_function_description"
                     android:padding="20dp"
-                    android:src="@drawable/inverse"/>
+                    android:src="@drawable/inverse"
+                    android:tag="inverse" />
 
                 <Button
                     android:id="@+id/sinButton"
                     style="@style/scientific_text_button"
-                    android:text="@string/sin_text" />
+                    android:text="@string/sin_text"
+                    android:tag="sin" />
 
             </LinearLayout>
 
@@ -129,24 +137,28 @@
                 <Button
                     android:id="@+id/mRecallButton"
                     style="@style/rounded_memory_button_land"
-                    android:text="@string/memory_recall_text" />
+                    android:text="@string/memory_recall_text"
+                    android:tag="MR" />
 
                 <ImageButton
                     android:id="@+id/sqrButton"
                     style="@style/image_button_land"
                     android:contentDescription="@string/squared_button_description"
-                    android:src="@drawable/squared" />
+                    android:src="@drawable/squared"
+                    android:tag="squared" />
 
 
                 <Button
                     android:id="@+id/squareRootButton"
                     style="@style/font_icon_button"
-                    android:text="@string/square_root_text" />
+                    android:text="@string/square_root_text"
+                    android:tag="squareRoot" />
 
                 <Button
                     android:id="@+id/cosButton"
                     style="@style/scientific_text_button"
-                    android:text="@string/cos_text" />
+                    android:text="@string/cos_text"
+                    android:tag="cos" />
 
             </LinearLayout>
 
@@ -160,25 +172,29 @@
                 <Button
                     android:id="@+id/mSaveButton"
                     style="@style/scientific_text_button"
-                    android:text="@string/memory_save_text" />
+                    android:text="@string/memory_save_text"
+                    android:tag="MS" />
 
                 <ImageButton
                     android:id="@+id/cubeButton"
                     style="@style/image_button_land"
                     android:contentDescription="@string/cubed_button_description"
-                    android:src="@drawable/cubed"/>
+                    android:src="@drawable/cubed"
+                    android:tag="cubed" />
 
                 <ImageButton
                     android:id="@+id/cubeRootButton"
                     style="@style/image_button_land"
                     android:contentDescription="@string/cubed_root_button_description"
-                    android:src="@drawable/cubed_root"/>
+                    android:src="@drawable/cubed_root"
+                    android:tag="cubeRoot" />
 
 
                 <Button
                     android:id="@+id/tangentButton"
                     style="@style/scientific_text_button"
-                    android:text="@string/tan_text" />
+                    android:text="@string/tan_text"
+                    android:tag="tan" />
 
             </LinearLayout>
 
@@ -192,25 +208,29 @@
                 <Button
                     android:id="@+id/mClearButton"
                     style="@style/scientific_text_button"
-                    android:text="@string/memory_clear_text" />
+                    android:text="@string/memory_clear_text"
+                    android:tag="MC" />
 
                 <ImageButton
                     android:id="@+id/exponentButton"
                     style="@style/image_button_land"
                     android:contentDescription="@string/exponentiation_button_description"
-                    android:src="@drawable/exponent" />
+                    android:src="@drawable/exponent"
+                    android:tag="exponent" />
 
                 <ImageButton
                     android:id="@+id/ythRootButton"
                     style="@style/image_button_land"
                     android:contentDescription="@string/yth_root_button_description"
-                    android:src="@drawable/yth_root" />
+                    android:src="@drawable/yth_root"
+                    android:tag="ythRoot" />
 
                 <ImageButton
                     android:id="@+id/antilogarithm"
                     style="@style/image_button_land"
                     android:contentDescription="@string/antilogarithm_button_description"
-                    android:src="@drawable/antilogarithm" />
+                    android:src="@drawable/antilogarithm"
+                    android:tag="antilogarithm" />
 
             </LinearLayout>
 
@@ -224,22 +244,26 @@
                 <Button
                     android:id="@+id/sevenButton"
                     style="@style/text_button"
-                    android:text="@string/seven_text" />
+                    android:text="@string/seven_text"
+                    android:tag="7" />
 
                 <Button
                     android:id="@+id/fourButton"
                     style="@style/text_button"
-                    android:text="@string/four_text" />
+                    android:text="@string/four_text"
+                    android:tag="4" />
 
                 <Button
                     android:id="@+id/oneButton"
                     style="@style/text_button"
-                    android:text="@string/one_text" />
+                    android:text="@string/one_text"
+                    android:tag="1" />
 
                 <Button
                     android:id="@+id/plusMinusButton"
                     style="@style/font_icon_button"
-                    android:text="@string/plus_minus_text" />
+                    android:text="@string/plus_minus_text"
+                    android:tag="plusMinus" />
 
             </LinearLayout>
 
@@ -253,22 +277,26 @@
                 <Button
                     android:id="@+id/eightButton"
                     style="@style/text_button"
-                    android:text="@string/eight_text" />
+                    android:text="@string/eight_text"
+                    android:tag="8" />
 
                 <Button
                     android:id="@+id/fiveButton"
                     style="@style/text_button"
-                    android:text="@string/five_text" />
+                    android:text="@string/five_text"
+                    android:tag="5" />
 
                 <Button
                     android:id="@+id/twoButton"
                     style="@style/text_button"
-                    android:text="@string/two_text" />
+                    android:text="@string/two_text"
+                    android:tag="2" />
 
                 <Button
                     android:id="@+id/zeroButton"
                     style="@style/text_button"
-                    android:text="@string/zero_text" />
+                    android:text="@string/zero_text"
+                    android:tag="0" />
 
             </LinearLayout>
 
@@ -282,22 +310,26 @@
                 <Button
                     android:id="@+id/nineButton"
                     style="@style/text_button"
-                    android:text="@string/nine_text" />
+                    android:text="@string/nine_text"
+                    android:tag="9" />
 
                 <Button
                     android:id="@+id/sixButton"
                     style="@style/text_button"
-                    android:text="@string/six_text" />
+                    android:text="@string/six_text"
+                    android:tag="6" />
 
                 <Button
                     android:id="@+id/threeButton"
                     style="@style/text_button"
-                    android:text="@string/three_text" />
+                    android:text="@string/three_text"
+                    android:tag="3" />
 
                 <Button
                     android:id="@+id/decimalButton"
                     style="@style/text_button"
-                    android:text="@string/decimal_text" />
+                    android:text="@string/decimal_text"
+                    android:tag="." />
 
             </LinearLayout>
 
@@ -311,22 +343,26 @@
                 <Button
                     android:id="@+id/divideButton"
                     style="@style/font_icon_button"
-                    android:text="@string/divide_text" />
+                    android:text="@string/divide_text"
+                    android:tag="divide" />
 
                 <Button
                     android:id="@+id/multiplyButton"
                     style="@style/font_icon_button"
-                    android:text="@string/multiply_text" />
+                    android:text="@string/multiply_text"
+                    android:tag="multiply" />
 
                 <Button
                     android:id="@+id/minusButton"
                     style="@style/font_icon_button"
-                    android:text="@string/minus_text" />
+                    android:text="@string/minus_text"
+                    android:tag="minus" />
 
                 <Button
                     android:id="@+id/plusButton"
                     style="@style/font_icon_button"
-                    android:text="@string/plus_text" />
+                    android:text="@string/plus_text"
+                    android:tag="plus" />
 
             </LinearLayout>
 
@@ -340,23 +376,27 @@
                 <Button
                     android:id="@+id/clearButton"
                     style="@style/font_icon_button"
-                    android:text="@string/clear_text" />
+                    android:text="@string/clear_text"
+                    android:tag="clear" />
 
                 <ImageButton
                     android:id="@+id/deleteButton"
                     style="@style/image_button_land"
                     android:contentDescription="@string/delete_button_description"
-                    android:src="@drawable/delete" />
+                    android:src="@drawable/delete"
+                    android:tag="delete" />
 
                 <Button
                     android:id="@+id/percentButton"
                     style="@style/font_icon_button"
-                    android:text="@string/percent_text" />
+                    android:text="@string/percent_text"
+                    android:tag="percent" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/equalsButton"
                     style="@style/gradient_button_land"
-                    android:text="@string/equals_text"/>
+                    android:text="@string/equals_text"
+                    android:tag="equals" />
 
             </LinearLayout>
 
