@@ -45,7 +45,8 @@ class Calculator(dataBinding: ActivityMainBinding, context: Context) {
             binding.plusButton,
             binding.minusButton,
             binding.multiplyButton,
-            binding.divideButton
+            binding.divideButton,
+            binding.equalsButton
         )
 
         operandButtons.forEach { it.setOnClickListener { attachOperand(it.tag as String) } }
@@ -54,6 +55,10 @@ class Calculator(dataBinding: ActivityMainBinding, context: Context) {
         binding.clearButton.setOnClickListener {
             clearScreen()
         }
+
+//        binding.equalsButton.setOnClickListener {
+//            performCalculation()
+//        }
     }
 
     private fun attachOperand(tag: String) {
@@ -68,7 +73,7 @@ class Calculator(dataBinding: ActivityMainBinding, context: Context) {
                 }
 
                 // TODO: REFACTOR REPEATING CODE
-                binding.formulaTextView.text = String.format("%s%s", formula, currentNumber)
+                binding.resultTextView.text = String.format("%s%s", formula, currentNumber)
             }
 
             "delete" -> {
@@ -77,7 +82,7 @@ class Calculator(dataBinding: ActivityMainBinding, context: Context) {
                 } else if (formula.isNotEmpty()) {
                     formula = formula.dropLast(1)
                 }
-                binding.formulaTextView.text = if (formula.isEmpty()) "0" else formula
+                binding.resultTextView.text = if (formula.isEmpty()) "0" else formula
             }
 
             "plus_minus" -> {
@@ -90,7 +95,7 @@ class Calculator(dataBinding: ActivityMainBinding, context: Context) {
                 }
 
                 // TODO: REFACTOR REPEATING CODE
-                binding.formulaTextView.text = String.format("%s%s", formula, currentNumber)
+                binding.resultTextView.text = String.format("%s%s", formula, currentNumber)
             }
 
             "clear" -> {
@@ -105,10 +110,9 @@ class Calculator(dataBinding: ActivityMainBinding, context: Context) {
                 }
 
                 // TODO: REFACTOR REPEATING CODE
-                binding.formulaTextView.text = String.format("%s%s", formula, currentNumber)
+                binding.resultTextView.text = String.format("%s%s", formula, currentNumber)
             }
         }
-        Log.i("currentNumber", currentNumber)
     }
 
     private fun attachOperator(tag: String) {
@@ -124,7 +128,15 @@ class Calculator(dataBinding: ActivityMainBinding, context: Context) {
 
             formula += tag
             formatFormula()
-            binding.formulaTextView.text = formula
+            binding.resultTextView.text = formula
+        }
+
+        if (tag == "equals") {
+            if (formula.isEmpty() || !formula.last().isDigit() || formula.last() == '.') {
+                formula = formula.dropLast(1)
+            }
+            formula += currentNumber
+            performCalculation()
         }
     }
 
@@ -134,9 +146,15 @@ class Calculator(dataBinding: ActivityMainBinding, context: Context) {
         }
     }
 
+    private fun performCalculation() {
+        binding.formulaTextView.text = formula
+        binding.resultTextView.text = "0" // this should show answer
+    }
+
     private fun clearScreen() {
         formula = ""
         currentNumber = "0"
-        binding.formulaTextView.text = "0"
+        binding.formulaTextView.text = ""
+        binding.resultTextView.text = "0"
     }
 }

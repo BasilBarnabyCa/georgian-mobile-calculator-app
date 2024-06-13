@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="result_screen_layout_height">375dp</dimen>
-    <dimen name="result_text_size">65sp</dimen>
-    <dimen name="result_text_margin_top">120dp</dimen>
+    <dimen name="result_text_size">40sp</dimen>
+    <dimen name="result_text_margin_top">100dp</dimen>
     <dimen name="text_size">22sp</dimen>
     <dimen name="font_icon_text_size">18sp</dimen>
-    <dimen name="formula_text_size">30sp</dimen>
+    <dimen name="formula_text_size">25sp</dimen>
     <dimen name="formula_text_margin_top">75dp</dimen>
     <dimen name="padding_y">100dp</dimen>
     <dimen name="padding_x">25dp</dimen>

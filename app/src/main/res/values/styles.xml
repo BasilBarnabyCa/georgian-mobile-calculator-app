@@ -76,7 +76,7 @@
     </style>
 
     <style name="result_text" parent="screen_text">
-        <item name="android:fontFamily">@font/roboto_mono_medium</item>
+        <item name="android:fontFamily">@font/fa_solid_900</item>
         <item name="android:layout_marginTop">@dimen/result_text_margin_top</item>
         <item name="android:paddingStart">@dimen/padding_x</item>
         <item name="android:paddingEnd">@dimen/padding_x</item>
