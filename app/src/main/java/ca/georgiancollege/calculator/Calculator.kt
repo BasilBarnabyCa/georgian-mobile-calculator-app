@@ -7,9 +7,9 @@ import ca.georgiancollege.calculator.databinding.ActivityMainBinding
 class Calculator(dataBinding: ActivityMainBinding, context: Context) {
 
     private var binding: ActivityMainBinding = dataBinding
-    private var formula: String
+    private var expression: String
+    private var result: String
     private var currentNumber: String
-    private var isCurrentNumber: Boolean
     private val operatorMap = mapOf(
         "plus" to context.getString(R.string.plus_text),
         "minus" to context.getString(R.string.minus_text),
@@ -18,9 +18,9 @@ class Calculator(dataBinding: ActivityMainBinding, context: Context) {
     )
 
     init {
-        formula = ""
-        currentNumber = "0"
-        isCurrentNumber = true
+        expression = ""
+        result = "0"
+        currentNumber = ""
         createButtons()
     }
 
@@ -36,12 +36,11 @@ class Calculator(dataBinding: ActivityMainBinding, context: Context) {
             binding.eightButton,
             binding.nineButton,
             binding.zeroButton,
-            binding.decimalButton,
-            binding.deleteButton,
-            binding.plusMinusButton
+            binding.decimalButton
         )
 
         val operatorButtons = arrayOf(
+            binding.plusMinusButton,
             binding.plusButton,
             binding.minusButton,
             binding.multiplyButton,
@@ -49,16 +48,18 @@ class Calculator(dataBinding: ActivityMainBinding, context: Context) {
             binding.equalsButton
         )
 
+        val actionButtons = arrayOf(
+            binding.clearButton,
+            binding.deleteButton
+        )
+
         operandButtons.forEach { it.setOnClickListener { attachOperand(it.tag as String) } }
         operatorButtons.forEach { it.setOnClickListener { attachOperator(it.tag as String) } }
-
-        binding.clearButton.setOnClickListener {
-            clearScreen()
-        }
+        actionButtons.forEach { it.setOnClickListener { useAction(it.tag as String) } }
     }
 
-    private fun attachOperand(tag: String) {
-        when (tag) {
+    private fun attachOperand(operand: String) {
+        when (operand) {
             "." -> {
                 if (!currentNumber.contains(".")) {
                     if (currentNumber.isEmpty()) {
@@ -67,98 +68,100 @@ class Calculator(dataBinding: ActivityMainBinding, context: Context) {
                         currentNumber += "."
                     }
                 }
-                binding.resultTextView.text = String.format("%s%s", formula, currentNumber)
             }
 
-            "delete" -> {
-                if (currentNumber.isNotEmpty()) {
-                    currentNumber = currentNumber.dropLast(1)
-                } else if (formula.isNotEmpty()) {
-                    formula = formula.dropLast(1)
+            else -> {
+                if (currentNumber == "0" && operand == "0") {
+                    return
                 }
-                binding.resultTextView.text = if (formula.isEmpty()) "0" else formula
+                currentNumber += operand
+            }
+        }
+        updateResultWithOperand()
+    }
+
+    private fun attachOperator(operator: String) {
+        when (operator) {
+            "equals" -> {
+                if (currentNumber.isNotEmpty()) {
+                    expression += currentNumber
+                    currentNumber = ""
+                }
+                val formattedExpression = formatExpression(expression)
+                result = solve(formattedExpression)
             }
 
             "plus_minus" -> {
-                if (currentNumber.startsWith("-")) {
-                    currentNumber = currentNumber.substring(1)
-                } else {
-                    if (currentNumber.isNotEmpty() && currentNumber != "0") {
+                if (currentNumber.isNotEmpty()) {
+                    if (currentNumber.startsWith("-")) {
+                        currentNumber = currentNumber.substring(1)
+                    } else {
                         currentNumber = "-$currentNumber"
                     }
+                    updateResultWithOperand()
                 }
-                binding.resultTextView.text = String.format("%s%s", formula, currentNumber)
             }
 
+            else -> {
+                if (currentNumber.isNotEmpty()) {
+                    expression += currentNumber
+                    currentNumber = ""
+                }
+                expression += operator
+                updateResultWithExpression()
+            }
+        }
+    }
+
+    private fun useAction(action: String) {
+        when (action) {
             "clear" -> {
                 clearScreen()
             }
 
-            else -> {
-                if (currentNumber == "0") {
-                    currentNumber = tag
-                } else {
-                    currentNumber += tag
-                }
-                binding.resultTextView.text = String.format("%s%s", formula, currentNumber)
+            "delete" -> {
+                // Implement delete logic here
             }
         }
     }
 
-    private fun attachOperator(tag: String) {
-        if (tag == "plus" || tag == "minus" || tag == "multiply" || tag == "divide") {
-            if (currentNumber.isNotEmpty()) {
-                formula += currentNumber
-                currentNumber = ""
-            }
-
-            if (!formula.last().isDigit() || formula.last() == '.') {
-                formula = formula.dropLast(1)
-            }
-
-            formula += tag
-            formatFormula()
-            binding.resultTextView.text = formula
-        }
-
-        // TODO: Need to add repeating formula if possible
-        if (tag == "equals" && formula.isNotEmpty()) {
-            if (!formula.last().isDigit() || formula.last() == '.') {
-                formula = formula.dropLast(1)
-            }
-
-            if (currentNumber.isNotEmpty()) {
-                formula += currentNumber
-                currentNumber = ""
-            }
-
-            performCalculation()
-        }
-        Log.i("currentFormula", "!$formula") // TODO: Remove this
+    private fun updateResultWithOperand() {
+        result = String.format("%s%s", expression, currentNumber)
+        binding.resultTextView.text = formatResult(result)
     }
 
-    private fun formatFormula() {
-        operatorMap.forEach { (tag, buttonText) ->
-            formula = formula.replace(tag, " $buttonText ") // Fix extra space
-        }
-    }
-
-    private fun performCalculation() {
-        Log.i("currentFormula", formula) // TODO: Remove this
-        binding.formulaTextView.text = formula
-        binding.resultTextView.text = "0" // this should show the answer
-
-        // TODO: REFACTOR REPEATING CODE
-        formula = ""
-        currentNumber = "0"
+    private fun updateResultWithExpression() {
+        result = expression
+        binding.resultTextView.text = formatResult(result)
     }
 
     private fun clearScreen() {
-        // TODO: REFACTOR REPEATING CODE
-        formula = ""
-        currentNumber = "0"
-
-        binding.formulaTextView.text = ""
+        expression = ""
+        result = "0"
+        currentNumber = ""
         binding.resultTextView.text = "0"
+    }
+
+    private fun solve(formattedExpression: String): String {
+        Log.i("currentExpression", formattedExpression)
+        return "10"
+    }
+
+    private fun formatResult(result: String): String {
+        var formattedResult = result
+        operatorMap.forEach { (operator, buttonText) ->
+            formattedResult = formattedResult.replace(operator, " $buttonText ") // Fix extra space
+        }
+        Log.i("currentResult", formattedResult)
+        return formattedResult
+    }
+
+    private fun formatExpression(expression: String): String {
+        var formattedExpression = expression
+        operatorMap.forEach { (operator) ->
+            formattedExpression =
+                formattedExpression.replace(operator, " $operator ") // Fix extra space
+        }
+        return formattedExpression
     }
 }
