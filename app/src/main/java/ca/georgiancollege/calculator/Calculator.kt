@@ -55,10 +55,6 @@ class Calculator(dataBinding: ActivityMainBinding, context: Context) {
         binding.clearButton.setOnClickListener {
             clearScreen()
         }
-
-//        binding.equalsButton.setOnClickListener {
-//            performCalculation()
-//        }
     }
 
     private fun attachOperand(tag: String) {
@@ -71,8 +67,6 @@ class Calculator(dataBinding: ActivityMainBinding, context: Context) {
                         currentNumber += "."
                     }
                 }
-
-                // TODO: REFACTOR REPEATING CODE
                 binding.resultTextView.text = String.format("%s%s", formula, currentNumber)
             }
 
@@ -93,8 +87,6 @@ class Calculator(dataBinding: ActivityMainBinding, context: Context) {
                         currentNumber = "-$currentNumber"
                     }
                 }
-
-                // TODO: REFACTOR REPEATING CODE
                 binding.resultTextView.text = String.format("%s%s", formula, currentNumber)
             }
 
@@ -108,8 +100,6 @@ class Calculator(dataBinding: ActivityMainBinding, context: Context) {
                 } else {
                     currentNumber += tag
                 }
-
-                // TODO: REFACTOR REPEATING CODE
                 binding.resultTextView.text = String.format("%s%s", formula, currentNumber)
             }
         }
@@ -122,7 +112,7 @@ class Calculator(dataBinding: ActivityMainBinding, context: Context) {
                 currentNumber = ""
             }
 
-            if (formula.isEmpty() || !formula.last().isDigit() || formula.last() == '.') {
+            if (!formula.last().isDigit() || formula.last() == '.') {
                 formula = formula.dropLast(1)
             }
 
@@ -131,29 +121,43 @@ class Calculator(dataBinding: ActivityMainBinding, context: Context) {
             binding.resultTextView.text = formula
         }
 
-        if (tag == "equals") {
-            if (formula.isEmpty() || !formula.last().isDigit() || formula.last() == '.') {
+        // TODO: Need to add repeating formula if possible
+        if (tag == "equals" && formula.isNotEmpty()) {
+            if (!formula.last().isDigit() || formula.last() == '.') {
                 formula = formula.dropLast(1)
             }
-            formula += currentNumber
+
+            if (currentNumber.isNotEmpty()) {
+                formula += currentNumber
+                currentNumber = ""
+            }
+
             performCalculation()
         }
+        Log.i("currentFormula", "!$formula") // TODO: Remove this
     }
 
     private fun formatFormula() {
         operatorMap.forEach { (tag, buttonText) ->
-            formula = formula.replace(tag, buttonText)
+            formula = formula.replace(tag, " $buttonText ") // Fix extra space
         }
     }
 
     private fun performCalculation() {
+        Log.i("currentFormula", formula) // TODO: Remove this
         binding.formulaTextView.text = formula
-        binding.resultTextView.text = "0" // this should show answer
+        binding.resultTextView.text = "0" // this should show the answer
+
+        // TODO: REFACTOR REPEATING CODE
+        formula = ""
+        currentNumber = "0"
     }
 
     private fun clearScreen() {
+        // TODO: REFACTOR REPEATING CODE
         formula = ""
         currentNumber = "0"
+
         binding.formulaTextView.text = ""
         binding.resultTextView.text = "0"
     }
