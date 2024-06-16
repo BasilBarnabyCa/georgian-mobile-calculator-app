@@ -1,9 +1,9 @@
 /** Author: Basil Barnaby
  * Student Number: 200540109
  * Course: COMP3025 - Mobile and Pervasive Computing
- * Assignment: 1 - Calculator App
+ * Assignment: 2 - Calculator App
  * Date: June 16, 2024
- * Description: This is a calculator app TODO: UPDATE HERE
+ * Description: This is a calculator app which adheres to the BEDMAS rule.
  * Filename: Calculator App
  * Target Device: Google Pixel 8 Pro
  * Version: 0.2.0

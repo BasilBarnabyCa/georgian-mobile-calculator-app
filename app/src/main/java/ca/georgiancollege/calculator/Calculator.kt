@@ -8,6 +8,15 @@ import java.util.Stack
 import kotlin.math.pow
 import kotlin.math.sqrt
 
+/**
+ * Calculator class provides functionality for a basic calculator with support for various operations
+ * including addition, subtraction, multiplication, division, percentage, square, square root, and cube; adhering to the BEDMAS rule.
+ *
+ * This class manages the user input, updates the display, and handles the calculation logic.
+ *
+ * @param dataBinding The data binding for the activity.
+ * @param context The context of the application or activity.
+ */
 class Calculator(dataBinding: ActivityMainBinding, private val context: Context) {
 
     private var binding: ActivityMainBinding = dataBinding
@@ -34,6 +43,13 @@ class Calculator(dataBinding: ActivityMainBinding, private val context: Context)
         createButtons()
     }
 
+    /**
+     * Initializes and sets the click listeners for all the buttons on the calculator.
+     * This includes operand buttons (0-9 and decimal), operator buttons (plus, minus, multiply, divide, etc.),
+     * and action buttons (clear and delete, and memory buttons).
+     *
+     * @return void This method does not return any value.
+     */
     private fun createButtons() {
         val operandButtons = arrayOf(
             binding.oneButton,
@@ -71,6 +87,11 @@ class Calculator(dataBinding: ActivityMainBinding, private val context: Context)
         actionButtons.forEach { it.setOnClickListener { useAction(it.tag as String) } }
     }
 
+    /**
+     * Appends an operand (digit or decimal point) to the current operand being entered.
+     *
+     * @param operand The operand to be appended to the current number (a digit or a decimal point).
+     */
     private fun attachOperand(operand: String) {
         if (!limitInput()) {
             return
@@ -96,6 +117,11 @@ class Calculator(dataBinding: ActivityMainBinding, private val context: Context)
         updateResultWithOperand()
     }
 
+    /**
+     * Appends an operator to the current expression and handles specific operator actions.
+     *
+     * @param operator The operator to be appended or processed (e.g., "plus", "minus", "multiply", "divide", "equals", "plus_minus").
+     */
     private fun attachOperator(operator: String) {
         Log.i("Operator Attached", operator)
         when (operator) {
@@ -134,6 +160,11 @@ class Calculator(dataBinding: ActivityMainBinding, private val context: Context)
         }
     }
 
+    /**
+     * Performs the specified calculator action.
+     *
+     * @param action The action to be performed.
+     */
     private fun useAction(action: String) {
         when (action) {
             "clear" -> {
@@ -146,14 +177,23 @@ class Calculator(dataBinding: ActivityMainBinding, private val context: Context)
         }
     }
 
+    /**
+     * Updates the result display with the current expression and operand.
+     */
     private fun updateResultWithOperand() {
         binding.resultTextView.text = formatResult(expression + currentNumber)
     }
 
+    /**
+     * Updates the result display with the current expression.
+     */
     private fun updateResultWithExpression() {
         binding.resultTextView.text = formatResult(expression)
     }
 
+    /**
+     * Clears the calculator screen and resets the expression, result, and current number.
+     */
     private fun clearScreen() {
         expression = ""
         result = "0"
@@ -162,6 +202,11 @@ class Calculator(dataBinding: ActivityMainBinding, private val context: Context)
         binding.expressionTextView.text = ""
     }
 
+    /**
+     * Deletes the last character from the current number or expression.
+     * Updates the result display accordingly and rebuilds the expression.
+     * If the result display is empty, clears the calculator screen.
+     */
     private fun deleteCharacter() {
         val resultText = binding.resultTextView.text.toString()
 
@@ -183,6 +228,12 @@ class Calculator(dataBinding: ActivityMainBinding, private val context: Context)
         }
     }
 
+    /**
+     * Formats the given expression by replacing operator keywords with their respective button text.
+     *
+     * @param expression The expression to be formatted.
+     * @return The formatted expression as a string.
+     */
     private fun formatResult(expression: String): String {
         var formattedResult = expression
         operatorMap.forEach { (operator, buttonText) ->
@@ -191,7 +242,13 @@ class Calculator(dataBinding: ActivityMainBinding, private val context: Context)
         return formattedResult.trim()
     }
 
-    // Used to format expression before solving
+    /**
+     * Formats the given expression by adding spaces around operators.
+     * This is done to ensure calculation methods can properly interpret the expression.
+     *
+     * @param expression The expression to be formatted.
+     * @return The formatted expression as a string.
+     */
     private fun formatExpression(expression: String): String {
         var formattedExpression = expression
         operatorMap.forEach { (operator) ->
@@ -205,6 +262,10 @@ class Calculator(dataBinding: ActivityMainBinding, private val context: Context)
         return formattedExpression.trim()
     }
 
+    /**
+     * Rebuilds the expression from the current result view text.
+     * If the result view text is empty, clears the calculator screen.
+     */
     private fun rebuildExpression() {
         val resultViewText = binding.resultTextView.text.toString().trim()
 
@@ -229,11 +290,25 @@ class Calculator(dataBinding: ActivityMainBinding, private val context: Context)
         Log.i("rebuiltExpression", "New Expression: $expression")
     }
 
+    /**
+     * Checks if the length of the result text is within the allowed maximum input length.
+     *
+     * @return True if the input length is within the limit, false otherwise.
+     */
     private fun limitInput() : Boolean
     {
         return binding.resultTextView.text.toString().length <= context.getString(R.string.max_input_length).toInt()
     }
 
+    /**
+     * Solves the given mathematical expression formatted as a string using Postfix notation.
+     *
+     * Converts the infix expression to postfix notation, evaluates it, and formats the result.
+     * Handles the display of decimals, formatting to 8 decimal places and removing trailing zeros.
+     *
+     * @param formattedExpression The mathematical expression as a formatted string.
+     * @return The result of the evaluated expression as a string.
+     */
     private fun solve(formattedExpression: String): String {
         val expressionList = formattedExpression.split(" ")
         val postfix = convertToPostfix(expressionList)
@@ -248,6 +323,12 @@ class Calculator(dataBinding: ActivityMainBinding, private val context: Context)
         }
     }
 
+    /**
+     * Converts the given infix expression to postfix notation.
+     *
+     * @param expressionList The list of tokens representing the infix expression.
+     * @return The list of tokens representing the postfix expression.
+     */
     private fun convertToPostfix(expressionList: List<String>): List<String> {
         val output = mutableListOf<String>()
         val operators = Stack<String>()
@@ -284,6 +365,12 @@ class Calculator(dataBinding: ActivityMainBinding, private val context: Context)
     }
 
 
+    /**
+     * Performs the calculation using the given postfix expression.
+     *
+     * @param postfixList The list of tokens representing the postfix expression.
+     * @return The result of the calculation.
+     * */
     private fun performCalculation(postfixList: List<String>): Double {
         val stack = Stack<Double>()
         var lastOperatorWasPercent = false
@@ -331,6 +418,13 @@ class Calculator(dataBinding: ActivityMainBinding, private val context: Context)
     }
 
 
+    /**
+     * Performs a unary operation (squared, square_root, cubed, percent) on the given number.
+     *
+     * @param operator The unary operator to be applied.
+     * @param num The operand to be evaluated.
+     * @return The result of the unary operation as a double.
+     */
     private fun calculate(operator: String, num: Double): Double {
         return when (operator) {
             "squared" -> num.pow(2)
@@ -341,6 +435,14 @@ class Calculator(dataBinding: ActivityMainBinding, private val context: Context)
         }
     }
 
+    /**
+     * Performs a binary operation (addition, subtraction, multiplication, division) on the given numbers.
+     *
+     * @param operator The binary operator to be applied.
+     * @param num1 The first operand.
+     * @param num2 The second operand.
+     * @return The result of the binary operation as a double.
+     */
     private fun calculate(operator: String, num1: Double, num2: Double): Double {
         return when (operator) {
             "plus" -> num1 + num2
@@ -351,13 +453,27 @@ class Calculator(dataBinding: ActivityMainBinding, private val context: Context)
         }
     }
 
-    // Helpers
+    /**
+     * Checks if the string can be converted to a valid double number.
+     *
+     * @return True if the string is a valid number, false otherwise.
+     */
     private fun String.isNumber() = this.toDoubleOrNull() != null
 
+    /**
+     * Checks if the string is one of the supported operators.
+     *
+     * @return True if the string is a supported operator, false otherwise.
+     */
     private fun String.isOperator() = this in listOf(
         "plus", "minus", "multiply", "divide", "percent", "squared", "square_root", "cubed"
     )
 
+    /**
+     * Checks if the string is one of the supported operator symbols.
+     *
+     * @return True if the string is a supported operator symbol, false otherwise.
+     */
     private fun String.isOperatorSymbol() = this in listOf(
         context.getString(R.string.plus_text),
         context.getString(R.string.minus_text),
@@ -369,6 +485,11 @@ class Calculator(dataBinding: ActivityMainBinding, private val context: Context)
         "^3"
     )
 
+    /**
+     * Converts an operator symbol to its corresponding operator text.
+     *
+     * @return The corresponding operator text for the symbol, or an empty string if the symbol is not supported.
+     */
     private fun String.toOperatorText(): String {
         return when (this) {
             context.getString(R.string.plus_text) -> "plus"
