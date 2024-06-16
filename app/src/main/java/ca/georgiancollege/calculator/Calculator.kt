@@ -24,6 +24,7 @@ class Calculator(dataBinding: ActivityMainBinding, private val context: Context)
     private var result: String
     private var currentNumber: String
     private var lastOperator: String
+    private var errorDetected: Boolean
     private val operatorMap = mapOf(
         "plus" to context.getString(R.string.plus_text),
         "minus" to context.getString(R.string.minus_text),
@@ -40,6 +41,7 @@ class Calculator(dataBinding: ActivityMainBinding, private val context: Context)
         result = "0"
         currentNumber = ""
         lastOperator = ""
+        errorDetected = false
         createButtons()
     }
 
@@ -79,8 +81,13 @@ class Calculator(dataBinding: ActivityMainBinding, private val context: Context)
         )
 
         val actionButtons = arrayOf(
-            binding.clearButton, binding.deleteButton
+            binding.deleteButton
         )
+
+        // Separated clear button to elevate it over the error detected check
+        binding.clearButton.setOnClickListener {
+            clearScreen()
+        }
 
         operandButtons.forEach { it.setOnClickListener { attachOperand(it.tag as String) } }
         operatorButtons.forEach { it.setOnClickListener { attachOperator(it.tag as String) } }
@@ -93,7 +100,7 @@ class Calculator(dataBinding: ActivityMainBinding, private val context: Context)
      * @param operand The operand to be appended to the current number (a digit or a decimal point).
      */
     private fun attachOperand(operand: String) {
-        if (!limitInput()) {
+        if (!limitInput() || errorDetected) {
             return
         }
         when (operand) {
@@ -123,7 +130,9 @@ class Calculator(dataBinding: ActivityMainBinding, private val context: Context)
      * @param operator The operator to be appended or processed (e.g., "plus", "minus", "multiply", "divide", "equals", "plus_minus").
      */
     private fun attachOperator(operator: String) {
-        Log.i("Operator Attached", operator)
+        if (errorDetected) {
+            return
+        }
         when (operator) {
             "equals" -> {
                 if (currentNumber.isNotEmpty()) {
@@ -131,14 +140,18 @@ class Calculator(dataBinding: ActivityMainBinding, private val context: Context)
                     currentNumber = ""
                 }
                 result = solve(formatExpression(expression).trim())
-                binding.expressionTextView.text = binding.resultTextView.text
-                binding.resultTextView.text = result
+                if (errorDetected) {
+                    binding.expressionTextView.text = ""
+                    binding.resultTextView.text = context.getString(R.string.error_text)
+                } else {
+                    binding.expressionTextView.text = binding.resultTextView.text
+                    binding.resultTextView.text = result
+                }
                 expression = ""
             }
 
             "plus_minus" -> {
                 if (currentNumber.isNotEmpty() && currentNumber !="0") {
-                    Log.i("plusMinus", currentNumber)
                     currentNumber = if (currentNumber.startsWith("-")) {
                         currentNumber.substring(1)
                     } else {
@@ -154,7 +167,6 @@ class Calculator(dataBinding: ActivityMainBinding, private val context: Context)
                     currentNumber = ""
                 }
                 expression += operator
-                Log.i("showExpression", "Updated Expression: $expression")  // Add this log
                 updateResultWithExpression()
             }
         }
@@ -166,11 +178,10 @@ class Calculator(dataBinding: ActivityMainBinding, private val context: Context)
      * @param action The action to be performed.
      */
     private fun useAction(action: String) {
+        if (errorDetected) {
+            return
+        }
         when (action) {
-            "clear" -> {
-                clearScreen()
-            }
-
             "delete" -> {
                 deleteCharacter()
             }
@@ -200,6 +211,7 @@ class Calculator(dataBinding: ActivityMainBinding, private val context: Context)
         currentNumber = ""
         binding.resultTextView.text = "0"
         binding.expressionTextView.text = ""
+        errorDetected = false
     }
 
     /**
@@ -258,7 +270,6 @@ class Calculator(dataBinding: ActivityMainBinding, private val context: Context)
                 formattedExpression = formattedExpression.replace(operator, " $operator ")
             }
         }
-        Log.i("showExpression", "Formatted Expression: $formattedExpression")  // Add this log
         return formattedExpression.trim()
     }
 
@@ -274,11 +285,9 @@ class Calculator(dataBinding: ActivityMainBinding, private val context: Context)
             return
         }
 
-        Log.i("rebuiltExpression", "Formatted Result: $resultViewText")
-
         expression = ""
 
-        // Filtering out parts with empty strings
+        // Filtering out parts of the result that contain empty strings
         val resultParts = resultViewText.split(" ").filter { it.isNotEmpty() }
         for (part in resultParts) {
             when {
@@ -286,8 +295,6 @@ class Calculator(dataBinding: ActivityMainBinding, private val context: Context)
                 part.isOperatorSymbol() -> expression += part.toOperatorText()
             }
         }
-
-        Log.i("rebuiltExpression", "New Expression: $expression")
     }
 
     /**
@@ -305,6 +312,7 @@ class Calculator(dataBinding: ActivityMainBinding, private val context: Context)
      *
      * Converts the infix expression to postfix notation, evaluates it, and formats the result.
      * Handles the display of decimals, formatting to 8 decimal places and removing trailing zeros.
+     * If any errors occur, clears the calculator screen and displays an error message.
      *
      * @param formattedExpression The mathematical expression as a formatted string.
      * @return The result of the evaluated expression as a string.
@@ -344,16 +352,21 @@ class Calculator(dataBinding: ActivityMainBinding, private val context: Context)
         )
 
         for (element in expressionList) {
-            Log.i("ConvertToPostfix", "Processing element: $element")
             when {
                 element.isNumber() -> output.add(element)
                 element.isOperator() -> {
+                    // Check if the current operator has a higher precedence than the top operator on the stack
                     while (operators.isNotEmpty() && orderOfPrecedence[operators.peek()]!! >= orderOfPrecedence[element]!!) {
                         output.add(operators.pop())
                     }
                     operators.push(element)
                 }
-                element.isNotEmpty() -> throw IllegalArgumentException("Unknown element: $element")
+                element.isNotEmpty() -> {
+                    errorDetected = true
+                    expression = ""
+                    currentNumber = ""
+                    return emptyList()
+                }
             }
         }
 
@@ -410,7 +423,12 @@ class Calculator(dataBinding: ActivityMainBinding, private val context: Context)
                     }
                 }
 
-                else -> throw IllegalArgumentException("Unknown element: $element")
+                else -> {
+                    errorDetected = true
+                    expression = ""
+                    currentNumber = ""
+                    return 0.0
+                }
             }
         }
 
@@ -431,7 +449,12 @@ class Calculator(dataBinding: ActivityMainBinding, private val context: Context)
             "square_root" -> sqrt(num)
             "cubed" -> num.pow(3)
             "percent" -> num / 100
-            else -> throw UnsupportedOperationException("Operator not supported: $operator")
+            else -> {
+                errorDetected = true
+                expression = ""
+                currentNumber = ""
+                return 0.0
+            }
         }
     }
 
@@ -449,7 +472,12 @@ class Calculator(dataBinding: ActivityMainBinding, private val context: Context)
             "minus" -> num1 - num2
             "multiply" -> num1 * num2
             "divide" -> num1 / num2
-            else -> throw UnsupportedOperationException("Operator not supported: $operator")
+            else -> {
+                errorDetected = true
+                expression = ""
+                currentNumber = ""
+                return 0.0
+            }
         }
     }
 
