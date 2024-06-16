@@ -1,8 +1,6 @@
 package ca.georgiancollege.calculator
 
 import android.content.Context
-import android.icu.text.DecimalFormat
-import android.util.Log
 import ca.georgiancollege.calculator.databinding.ActivityMainBinding
 import java.util.Stack
 import kotlin.math.pow
@@ -89,9 +87,9 @@ class Calculator(dataBinding: ActivityMainBinding, private val context: Context)
             clearScreen()
         }
 
-        operandButtons.forEach { it.setOnClickListener { attachOperand(it.tag as String) } }
-        operatorButtons.forEach { it.setOnClickListener { attachOperator(it.tag as String) } }
-        actionButtons.forEach { it.setOnClickListener { useAction(it.tag as String) } }
+        operandButtons.forEach { it -> it.setOnClickListener { attachOperand(it.tag as String) } }
+        operatorButtons.forEach { it -> it.setOnClickListener { attachOperator(it.tag as String) } }
+        actionButtons.forEach { it -> it.setOnClickListener { useAction(it.tag as String) } }
     }
 
     /**
@@ -264,10 +262,10 @@ class Calculator(dataBinding: ActivityMainBinding, private val context: Context)
     private fun formatExpression(expression: String): String {
         var formattedExpression = expression
         operatorMap.forEach { (operator) ->
-            if (operator == "squared" || operator == "square_root" || operator == "cubed") {
-                formattedExpression = formattedExpression.replace(operator, " $operator")
+            formattedExpression = if (operator == "squared" || operator == "square_root" || operator == "cubed") {
+                formattedExpression.replace(operator, " $operator")
             } else {
-                formattedExpression = formattedExpression.replace(operator, " $operator ")
+                formattedExpression.replace(operator, " $operator ")
             }
         }
         return formattedExpression.trim()
@@ -340,6 +338,8 @@ class Calculator(dataBinding: ActivityMainBinding, private val context: Context)
     private fun convertToPostfix(expressionList: List<String>): List<String> {
         val output = mutableListOf<String>()
         val operators = Stack<String>()
+
+        // Map of order of precedence for operators. Higher numbers have higher precedence.
         val orderOfPrecedence = mapOf(
             "plus" to 1,
             "minus" to 1,
@@ -355,6 +355,7 @@ class Calculator(dataBinding: ActivityMainBinding, private val context: Context)
             when {
                 element.isNumber() -> output.add(element)
                 element.isOperator() -> {
+
                     // Check if the current operator has a higher precedence than the top operator on the stack
                     while (operators.isNotEmpty() && orderOfPrecedence[operators.peek()]!! >= orderOfPrecedence[element]!!) {
                         output.add(operators.pop())
@@ -386,12 +387,13 @@ class Calculator(dataBinding: ActivityMainBinding, private val context: Context)
      * */
     private fun performCalculation(postfixList: List<String>): Double {
         val stack = Stack<Double>()
-        var lastOperatorWasPercent = false
+        var lastOperatorWasPercent = false // Flag used to track context of the percent operator
 
         for (element in postfixList) {
             when {
                 element.isNumber() -> stack.push(element.toDouble())
                 element.isOperator() -> {
+                    // Handle unary operations
                     if (element in listOf("squared", "square_root", "cubed")) {
                         if (stack.isNotEmpty()) {
                             val num = stack.pop()
@@ -403,17 +405,22 @@ class Calculator(dataBinding: ActivityMainBinding, private val context: Context)
                     else if (element == "percent") {
                         if (stack.isNotEmpty()) {
                             val num = stack.pop()
+
+                            // if the last operator was a percent, apply it to the preceding part of the expression
                             if (stack.isNotEmpty() && !lastOperatorWasPercent) {
                                 val previousNumber = stack.pop()
                                 val result = previousNumber * (num / 100)
                                 stack.push(previousNumber)
                                 stack.push(result)
                             } else {
+                                // if not, apply it to the current number which would be the only operand in the expression
                                 stack.push(num / 100)
                             }
                         }
                         lastOperatorWasPercent = true
                     } else {
+
+                        // Handle Binary operations
                         if (stack.size >= 2) {
                             val num2 = stack.pop()
                             val num1 = stack.pop()
