@@ -7,12 +7,13 @@ import java.util.Stack
 import kotlin.math.pow
 import kotlin.math.sqrt
 
-class Calculator(dataBinding: ActivityMainBinding, context: Context) {
+class Calculator(dataBinding: ActivityMainBinding, private val context: Context) {
 
     private var binding: ActivityMainBinding = dataBinding
     private var expression: String
-    private var answer: String
+    private var result: String
     private var currentNumber: String
+    private var lastOperator: String
     private val operatorMap = mapOf(
         "plus" to context.getString(R.string.plus_text),
         "minus" to context.getString(R.string.minus_text),
@@ -26,8 +27,9 @@ class Calculator(dataBinding: ActivityMainBinding, context: Context) {
 
     init {
         expression = ""
-        answer = "0"
+        result = "0"
         currentNumber = ""
+        lastOperator = ""
         createButtons()
     }
 
@@ -98,9 +100,9 @@ class Calculator(dataBinding: ActivityMainBinding, context: Context) {
                     expression += currentNumber
                     currentNumber = ""
                 }
-                answer = solve(formatExpression(expression).trim())
+                result = solve(formatExpression(expression).trim())
                 binding.expressionTextView.text = binding.resultTextView.text
-                binding.resultTextView.text = answer
+                binding.resultTextView.text = result
                 expression = ""
             }
 
@@ -150,32 +152,37 @@ class Calculator(dataBinding: ActivityMainBinding, context: Context) {
 
     private fun clearScreen() {
         expression = ""
-        answer = "0"
+        result = "0"
         currentNumber = ""
         binding.resultTextView.text = "0"
         binding.expressionTextView.text = ""
     }
 
     private fun deleteCharacter() {
-        if (binding.resultTextView.text.length > 1) {
-            if (binding.resultTextView.text.last() == ' ') {
-                binding.resultTextView.text =
-                    binding.resultTextView.text.substring(0, binding.resultTextView.text.length - 2)
-            } else {
-                binding.resultTextView.text =
-                    binding.resultTextView.text.substring(0, binding.resultTextView.text.length - 1)
+        val resultText = binding.resultTextView.text.toString()
+
+        if (resultText.isNotEmpty()) {
+            binding.resultTextView.text = resultText.dropLast(1).trimEnd()
+
+            if (currentNumber.isNotEmpty()) {
+                currentNumber = currentNumber.dropLast(1)
+            } else if (expression.isNotEmpty()) {
+                expression = expression.dropLast(1).trimEnd()
+                if (expression.isNotEmpty() && expression.last().toString().isOperatorSymbol()) {
+                    expression = expression.dropLast(1).trimEnd()
+                }
             }
+
+            rebuildExpression()
         } else {
             clearScreen()
         }
-        // TODO: Need to make this function
-        rebuildExpression()
     }
 
     private fun formatResult(expression: String): String {
         var formattedResult = expression
         operatorMap.forEach { (operator, buttonText) ->
-            formattedResult = formattedResult.replace(operator, " $buttonText ") // Fix extra space
+            formattedResult = formattedResult.replace(operator, " $buttonText ")
         }
         return formattedResult.trim()
     }
@@ -195,24 +202,39 @@ class Calculator(dataBinding: ActivityMainBinding, context: Context) {
     }
 
     private fun rebuildExpression() {
+        val resultViewText = binding.resultTextView.text.toString().trim()
 
+        if (resultViewText.isEmpty()) {
+            clearScreen()
+            return
+        }
+
+        Log.i("rebuiltExpression", "Formatted Result: $resultViewText")
+
+        expression = ""
+
+        // Filtering out parts with empty strings
+        val resultParts = resultViewText.split(" ").filter { it.isNotEmpty() }
+        for (part in resultParts) {
+            when {
+                part.isNumber() -> expression += part
+                part.isOperatorSymbol() -> expression += part.toOperatorText()
+            }
+        }
+
+        Log.i("rebuiltExpression", "New Expression: $expression")
     }
 
     private fun solve(formattedExpression: String): String {
         val expressionList = formattedExpression.split(" ")
-
-        expressionList.forEach {
-            Log.i("Expression", it)
-        }
-
         val postfix = convertToPostfix(expressionList)
-        val answer = performCalculation(postfix)
+        val solution = performCalculation(postfix)
 
         // Handles display of of decimals if present
-        return if (answer % 1 == 0.0) {
-            answer.toInt().toString()
+        return if (solution % 1 == 0.0) {
+            solution.toInt().toString()
         } else {
-            answer.toString()
+            solution.toString()
         }
     }
 
@@ -259,7 +281,7 @@ class Calculator(dataBinding: ActivityMainBinding, context: Context) {
             when {
                 element.isNumber() -> stack.push(element.toDouble())
                 element.isOperator() -> {
-                    // Handing Unary vs Binary Operations
+                    // Handling Unary vs Binary Operations
                     if (element in listOf("squared", "square_root", "cubed", "percent")) {
                         val num = stack.pop()
                         stack.push(calculate(element, num))
@@ -293,10 +315,6 @@ class Calculator(dataBinding: ActivityMainBinding, context: Context) {
             "minus" -> num1 - num2
             "multiply" -> num1 * num2
             "divide" -> num1 / num2
-            "percent" -> num1 * (num2 / 100)
-            "squared" -> num1.pow(2)
-            "square_root" -> sqrt(num1)
-            "cubed" -> num1.pow(3)
             else -> throw UnsupportedOperationException("Operator not supported: $operator")
         }
     }
@@ -307,4 +325,29 @@ class Calculator(dataBinding: ActivityMainBinding, context: Context) {
     private fun String.isOperator() = this in listOf(
         "plus", "minus", "multiply", "divide", "percent", "squared", "square_root", "cubed"
     )
+
+    private fun String.isOperatorSymbol() = this in listOf(
+        context.getString(R.string.plus_text),
+        context.getString(R.string.minus_text),
+        context.getString(R.string.multiply_text),
+        context.getString(R.string.divide_text),
+        context.getString(R.string.percent_text),
+        "^2",
+        "sqrt",
+        "^3"
+    )
+
+    private fun String.toOperatorText(): String {
+        return when (this) {
+            context.getString(R.string.plus_text) -> "plus"
+            context.getString(R.string.minus_text) -> "minus"
+            context.getString(R.string.multiply_text) -> "multiply"
+            context.getString(R.string.divide_text) -> "divide"
+            context.getString(R.string.percent_text) -> "percent"
+            "^2" -> "squared"
+            "sqrt" -> "square_root"
+            "^3" -> "cubed"
+            else -> ""
+        }
+    }
 }
