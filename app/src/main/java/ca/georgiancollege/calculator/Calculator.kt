@@ -8,7 +8,7 @@ class Calculator(dataBinding: ActivityMainBinding, context: Context) {
 
     private var binding: ActivityMainBinding = dataBinding
     private var expression: String
-    private var result: String
+    private var answer: String
     private var currentNumber: String
     private val operatorMap = mapOf(
         "plus" to context.getString(R.string.plus_text),
@@ -19,7 +19,7 @@ class Calculator(dataBinding: ActivityMainBinding, context: Context) {
 
     init {
         expression = ""
-        result = "0"
+        answer = "0"
         currentNumber = ""
         createButtons()
     }
@@ -87,16 +87,18 @@ class Calculator(dataBinding: ActivityMainBinding, context: Context) {
                     expression += currentNumber
                     currentNumber = ""
                 }
-                val formattedExpression = formatExpression(expression)
-                result = solve(formattedExpression)
+                answer = solve(formatExpression(expression))
+                binding.resultTextView.text = answer
+                expression = ""
             }
 
             "plus_minus" -> {
                 if (currentNumber.isNotEmpty()) {
-                    if (currentNumber.startsWith("-")) {
-                        currentNumber = currentNumber.substring(1)
+                    Log.i("plusMinus", currentNumber)
+                    currentNumber = if (currentNumber.startsWith("-")) {
+                        currentNumber.substring(1)
                     } else {
-                        currentNumber = "-$currentNumber"
+                        "-$currentNumber"
                     }
                     updateResultWithOperand()
                 }
@@ -107,6 +109,8 @@ class Calculator(dataBinding: ActivityMainBinding, context: Context) {
                     expression += currentNumber
                     currentNumber = ""
                 }
+
+//                val operatorSymbol = operatorMap[operator] ?: ""
                 expression += operator
                 updateResultWithExpression()
             }
@@ -120,48 +124,72 @@ class Calculator(dataBinding: ActivityMainBinding, context: Context) {
             }
 
             "delete" -> {
-                // Implement delete logic here
+                deleteCharacter()
             }
         }
     }
 
     private fun updateResultWithOperand() {
-        result = String.format("%s%s", expression, currentNumber)
-        binding.resultTextView.text = formatResult(result)
+        binding.resultTextView.text = formatResult(expression + currentNumber)
     }
 
     private fun updateResultWithExpression() {
-        result = expression
-        binding.resultTextView.text = formatResult(result)
+        binding.resultTextView.text = formatResult(expression)
     }
 
     private fun clearScreen() {
         expression = ""
-        result = "0"
+        answer = "0"
         currentNumber = ""
         binding.resultTextView.text = "0"
     }
 
-    private fun solve(formattedExpression: String): String {
-        Log.i("currentExpression", formattedExpression)
-        return "10"
+    private fun deleteCharacter() {
+        if (binding.resultTextView.text.length > 1) {
+            if (binding.resultTextView.text.last() == ' ') {
+                binding.resultTextView.text =
+                    binding.resultTextView.text.substring(0, binding.resultTextView.text.length - 2)
+            } else {
+                binding.resultTextView.text =
+                    binding.resultTextView.text.substring(0, binding.resultTextView.text.length - 1)
+            }
+        } else {
+            clearScreen()
+        }
+        // TODO: Need to make this function
+        rebuildExpression()
     }
 
-    private fun formatResult(result: String): String {
-        var formattedResult = result
+    private fun solve(formattedExpression: String): String {
+        Log.i("resultTracker", "")
+        Log.i("resultTracker", "Action: Equals")
+        Log.i("resultTracker", "Expression: $expression")
+        Log.i("resultTracker", "Formatted Expression: $formattedExpression")
+        Log.i("resultTracker", "Current Result: $answer")
+        Log.i("resultTracker", "Result Text View: ${binding.resultTextView.text}")
+        Log.i("resultTracker", "End of Action: Equals")
+        return "10" // Placeholder for actual result
+    }
+
+    private fun formatResult(expression: String): String {
+        var formattedResult = expression
         operatorMap.forEach { (operator, buttonText) ->
             formattedResult = formattedResult.replace(operator, " $buttonText ") // Fix extra space
         }
-        Log.i("currentResult", formattedResult)
         return formattedResult
     }
 
+
+    // Used to format expression before solving
     private fun formatExpression(expression: String): String {
         var formattedExpression = expression
         operatorMap.forEach { (operator) ->
-            formattedExpression =
-                formattedExpression.replace(operator, " $operator ") // Fix extra space
+            formattedExpression = formattedExpression.replace(operator, " $operator ")
         }
         return formattedExpression
+    }
+
+    private fun rebuildExpression() {
+
     }
 }
