@@ -50,4 +50,6 @@
     <string name="yth_root_button_description">Yth root function</string>
     <string name="antilogarithm_button_description">Antilogarithm function</string>
     <string name="delete_button_description">Delete right most character</string>
+
+    <string name="decimal_format">"%.8f"</string>
 </resources>

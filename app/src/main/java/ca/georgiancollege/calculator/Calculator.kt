@@ -1,6 +1,7 @@
 package ca.georgiancollege.calculator
 
 import android.content.Context
+import android.icu.text.DecimalFormat
 import android.util.Log
 import ca.georgiancollege.calculator.databinding.ActivityMainBinding
 import java.util.Stack
@@ -228,7 +229,7 @@ class Calculator(dataBinding: ActivityMainBinding, private val context: Context)
     private fun solve(formattedExpression: String): String {
         val expressionList = formattedExpression.split(" ")
         val postfix = convertToPostfix(expressionList)
-        val solution = performCalculation(postfix)
+        val solution = String.format(context.getString(R.string.decimal_format), performCalculation(postfix)).toDouble()
 
         // Handles display of of decimals if present
         return if (solution % 1 == 0.0) {
