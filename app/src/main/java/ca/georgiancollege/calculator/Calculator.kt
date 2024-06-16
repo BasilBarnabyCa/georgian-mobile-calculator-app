@@ -263,8 +263,7 @@ class Calculator(dataBinding: ActivityMainBinding, private val context: Context)
                     }
                     operators.push(element)
                 }
-
-                else -> throw IllegalArgumentException("Unknown element: $element")
+                element.isNotEmpty() -> throw IllegalArgumentException("Unknown element: $element")
             }
         }
 
@@ -275,21 +274,43 @@ class Calculator(dataBinding: ActivityMainBinding, private val context: Context)
         return output
     }
 
+
     private fun performCalculation(postfixList: List<String>): Double {
         val stack = Stack<Double>()
+        var lastOperatorWasPercent = false
 
         for (element in postfixList) {
             when {
                 element.isNumber() -> stack.push(element.toDouble())
                 element.isOperator() -> {
-                    // Handling Unary vs Binary Operations
-                    if (element in listOf("squared", "square_root", "cubed", "percent")) {
-                        val num = stack.pop()
-                        stack.push(calculate(element, num))
+                    if (element in listOf("squared", "square_root", "cubed")) {
+                        if (stack.isNotEmpty()) {
+                            val num = stack.pop()
+                            stack.push(calculate(element, num))
+                        }
+                    }
+
+                    // Handle percent context: whether it is unary or being applied to the preceding part of the expression
+                    else if (element == "percent") {
+                        if (stack.isNotEmpty()) {
+                            val num = stack.pop()
+                            if (stack.isNotEmpty() && !lastOperatorWasPercent) {
+                                val previousNumber = stack.pop()
+                                val result = previousNumber * (num / 100)
+                                stack.push(previousNumber)
+                                stack.push(result)
+                            } else {
+                                stack.push(num / 100)
+                            }
+                        }
+                        lastOperatorWasPercent = true
                     } else {
-                        val num2 = stack.pop()
-                        val num1 = stack.pop()
-                        stack.push(calculate(element, num1, num2))
+                        if (stack.size >= 2) {
+                            val num2 = stack.pop()
+                            val num1 = stack.pop()
+                            stack.push(calculate(element, num1, num2))
+                        }
+                        lastOperatorWasPercent = false
                     }
                 }
 
@@ -297,8 +318,9 @@ class Calculator(dataBinding: ActivityMainBinding, private val context: Context)
             }
         }
 
-        return stack.pop()
+        return if (stack.isNotEmpty()) stack.pop() else 0.0
     }
+
 
     private fun calculate(operator: String, num: Double): Double {
         return when (operator) {
