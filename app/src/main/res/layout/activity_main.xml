@@ -126,7 +126,7 @@
             android:orientation="vertical">
 
             <Button
-                android:id="@+id/squareRootButton"
+                android:id="@+id/sqr_root_button"
                 style="@style/font_icon_button"
                 android:text="@string/square_root_text"
                 android:tag="square_root" />

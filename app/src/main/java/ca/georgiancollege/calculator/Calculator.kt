@@ -4,6 +4,8 @@ import android.content.Context
 import android.util.Log
 import ca.georgiancollege.calculator.databinding.ActivityMainBinding
 import java.util.Stack
+import kotlin.math.pow
+import kotlin.math.sqrt
 
 class Calculator(dataBinding: ActivityMainBinding, context: Context) {
 
@@ -16,7 +18,10 @@ class Calculator(dataBinding: ActivityMainBinding, context: Context) {
         "minus" to context.getString(R.string.minus_text),
         "multiply" to context.getString(R.string.multiply_text),
         "divide" to context.getString(R.string.divide_text),
-        "percent" to context.getString(R.string.percent_text)
+        "percent" to context.getString(R.string.percent_text),
+        "squared" to "^2",
+        "square_root" to "sqrt",
+        "cubed" to "^3"
     )
 
     init {
@@ -48,12 +53,14 @@ class Calculator(dataBinding: ActivityMainBinding, context: Context) {
             binding.multiplyButton,
             binding.divideButton,
             binding.percentButton,
+            binding.sqrButton,
+            binding.sqrRootButton,
+            binding.cubeButton,
             binding.equalsButton
         )
 
         val actionButtons = arrayOf(
-            binding.clearButton,
-            binding.deleteButton
+            binding.clearButton, binding.deleteButton
         )
 
         operandButtons.forEach { it.setOnClickListener { attachOperand(it.tag as String) } }
@@ -170,17 +177,21 @@ class Calculator(dataBinding: ActivityMainBinding, context: Context) {
         operatorMap.forEach { (operator, buttonText) ->
             formattedResult = formattedResult.replace(operator, " $buttonText ") // Fix extra space
         }
-        return formattedResult
+        return formattedResult.trim()
     }
 
     // Used to format expression before solving
     private fun formatExpression(expression: String): String {
         var formattedExpression = expression
         operatorMap.forEach { (operator) ->
-            formattedExpression = formattedExpression.replace(operator, " $operator ")
+            if (operator == "squared" || operator == "square_root" || operator == "cubed") {
+                formattedExpression = formattedExpression.replace(operator, " $operator")
+            } else {
+                formattedExpression = formattedExpression.replace(operator, " $operator ")
+            }
         }
         Log.i("showExpression", "Formatted Expression: $formattedExpression")  // Add this log
-        return formattedExpression
+        return formattedExpression.trim()
     }
 
     private fun rebuildExpression() {
@@ -213,7 +224,10 @@ class Calculator(dataBinding: ActivityMainBinding, context: Context) {
             "minus" to 1,
             "multiply" to 2,
             "divide" to 2,
-            "percent" to 3
+            "percent" to 3,
+            "squared" to 4,
+            "square_root" to 4,
+            "cubed" to 4
         )
 
         for (element in expressionList) {
@@ -245,15 +259,13 @@ class Calculator(dataBinding: ActivityMainBinding, context: Context) {
             when {
                 element.isNumber() -> stack.push(element.toDouble())
                 element.isOperator() -> {
-                    if (element == "percent" && stack.size >= 1) {
+                    // Handing Unary vs Binary Operations
+                    if (element in listOf("squared", "square_root", "cubed", "percent")) {
                         val num = stack.pop()
-                        val previousNumber = stack.pop() // Get the previous number
-                        val result = previousNumber * (num / 100) // Apply percentage to previous number
-                        stack.push(result)
-                        stack.push(previousNumber) // Push back the previous number to the stack
+                        stack.push(calculate(element, num))
                     } else {
                         val num2 = stack.pop()
-                        val num1 = if (stack.isNotEmpty()) stack.pop() else 0.0
+                        val num1 = stack.pop()
                         stack.push(calculate(element, num1, num2))
                     }
                 }
@@ -265,6 +277,16 @@ class Calculator(dataBinding: ActivityMainBinding, context: Context) {
         return stack.pop()
     }
 
+    private fun calculate(operator: String, num: Double): Double {
+        return when (operator) {
+            "squared" -> num.pow(2)
+            "square_root" -> sqrt(num)
+            "cubed" -> num.pow(3)
+            "percent" -> num / 100
+            else -> throw UnsupportedOperationException("Operator not supported: $operator")
+        }
+    }
+
     private fun calculate(operator: String, num1: Double, num2: Double): Double {
         return when (operator) {
             "plus" -> num1 + num2
@@ -272,6 +294,9 @@ class Calculator(dataBinding: ActivityMainBinding, context: Context) {
             "multiply" -> num1 * num2
             "divide" -> num1 / num2
             "percent" -> num1 * (num2 / 100)
+            "squared" -> num1.pow(2)
+            "square_root" -> sqrt(num1)
+            "cubed" -> num1.pow(3)
             else -> throw UnsupportedOperationException("Operator not supported: $operator")
         }
     }
@@ -279,5 +304,7 @@ class Calculator(dataBinding: ActivityMainBinding, context: Context) {
     // Helpers
     private fun String.isNumber() = this.toDoubleOrNull() != null
 
-    private fun String.isOperator() = this in listOf("plus", "minus", "multiply", "divide", "percent")
+    private fun String.isOperator() = this in listOf(
+        "plus", "minus", "multiply", "divide", "percent", "squared", "square_root", "cubed"
+    )
 }
