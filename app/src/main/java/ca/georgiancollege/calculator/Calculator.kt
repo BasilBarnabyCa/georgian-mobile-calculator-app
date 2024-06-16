@@ -72,6 +72,9 @@ class Calculator(dataBinding: ActivityMainBinding, private val context: Context)
     }
 
     private fun attachOperand(operand: String) {
+        if (!limitInput()) {
+            return
+        }
         when (operand) {
             "." -> {
                 if (!currentNumber.contains(".")) {
@@ -226,16 +229,22 @@ class Calculator(dataBinding: ActivityMainBinding, private val context: Context)
         Log.i("rebuiltExpression", "New Expression: $expression")
     }
 
+    private fun limitInput() : Boolean
+    {
+        return binding.resultTextView.text.toString().length <= context.getString(R.string.max_input_length).toInt()
+    }
+
     private fun solve(formattedExpression: String): String {
         val expressionList = formattedExpression.split(" ")
         val postfix = convertToPostfix(expressionList)
-        val solution = String.format(context.getString(R.string.decimal_format), performCalculation(postfix)).toDouble()
+        val solution = performCalculation(postfix)
 
-        // Handles display of of decimals if present
+        // Handles display of of decimals if present and formats to 8 decimal places
         return if (solution % 1 == 0.0) {
-            solution.toInt().toString()
+            solution.toString().dropLast(2)
         } else {
-            solution.toString()
+            // Format to 8 decimal places and use regex to drop trailing zeros
+            String.format(context.getString(R.string.decimal_format), solution).replace(Regex("\\.?0*$"), "")
         }
     }
 

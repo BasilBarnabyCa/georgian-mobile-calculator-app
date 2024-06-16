@@ -52,4 +52,5 @@
     <string name="delete_button_description">Delete right most character</string>
 
     <string name="decimal_format">"%.8f"</string>
+    <string name="max_input_length">"50"</string>
 </resources>
