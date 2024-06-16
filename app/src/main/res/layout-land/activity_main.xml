@@ -41,7 +41,7 @@
                 android:text="" />
 
             <TextView
-                android:id="@+id/formulaTextView"
+                android:id="@+id/expression_text_view"
                 style="@style/formula_text_land"
                 android:text="@string/default_value" />
 

@@ -165,7 +165,7 @@ class CalculatorBackup(dataBinding: ActivityMainBinding, context: Context) {
 
     private fun performCalculation() {
         Log.i("currentFormula", expression) // TODO: Remove this
-        binding.formulaTextView.text = formattedExpression
+        binding.expressionTextView.text = formattedExpression
         binding.resultTextView.text = "0" // this should show the answer
 
         // TODO: REFACTOR REPEATING CODE
@@ -178,7 +178,7 @@ class CalculatorBackup(dataBinding: ActivityMainBinding, context: Context) {
         expression = ""
         currentNumber = "0"
         formattedExpression = ""
-        binding.formulaTextView.text = ""
+        binding.expressionTextView.text = ""
         binding.resultTextView.text = "0"
     }
 }
