@@ -107,7 +107,7 @@ class Calculator(dataBinding: ActivityMainBinding, private val context: Context)
             }
 
             "plus_minus" -> {
-                if (currentNumber.isNotEmpty()) {
+                if (currentNumber.isNotEmpty() && currentNumber !="0") {
                     Log.i("plusMinus", currentNumber)
                     currentNumber = if (currentNumber.startsWith("-")) {
                         currentNumber.substring(1)
