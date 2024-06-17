@@ -152,6 +152,7 @@ class Calculator(dataBinding: ActivityMainBinding, private val context: Context)
                     binding.expressionTextView.text = binding.resultTextView.text
                     binding.resultTextView.text = result
                 }
+                currentNumber = result
                 expression = ""
             }
 
