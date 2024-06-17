@@ -213,32 +213,6 @@ class Calculator(dataBinding: ActivityMainBinding, private val context: Context)
     }
 
     /**
-     * Deletes the last character from the current number or expression.
-     * Updates the result display accordingly and rebuilds the expression.
-     * If the result display is empty, clears the calculator screen.
-     */
-    private fun deleteCharacter() {
-        val resultText = binding.resultTextView.text.toString()
-
-        if (resultText.isNotEmpty()) {
-            binding.resultTextView.text = resultText.dropLast(1).trimEnd()
-
-            if (currentNumber.isNotEmpty()) {
-                currentNumber = currentNumber.dropLast(1)
-            } else if (expression.isNotEmpty()) {
-                expression = expression.dropLast(1).trimEnd()
-                if (expression.isNotEmpty() && expression.last().toString().isOperatorSymbol()) {
-                    expression = expression.dropLast(1).trimEnd()
-                }
-            }
-
-            rebuildExpression()
-        } else {
-            clearScreen()
-        }
-    }
-
-    /**
      * Formats the given expression by replacing operator keywords with their respective button text.
      *
      * @param expression The expression to be formatted.
@@ -269,6 +243,32 @@ class Calculator(dataBinding: ActivityMainBinding, private val context: Context)
             }
         }
         return formattedExpression.trim()
+    }
+
+    /**
+     * Deletes the last character from the current number or expression.
+     * Updates the result display accordingly and rebuilds the expression.
+     * If the result display is empty, clears the calculator screen.
+     */
+    private fun deleteCharacter() {
+        val resultText = binding.resultTextView.text.toString()
+
+        if (resultText.isNotEmpty()) {
+            binding.resultTextView.text = resultText.dropLast(1).trimEnd()
+
+            if (currentNumber.isNotEmpty()) {
+                currentNumber = currentNumber.dropLast(1)
+            } else if (expression.isNotEmpty()) {
+                expression = expression.dropLast(1).trimEnd()
+                if (expression.isNotEmpty() && expression.last().toString().isOperatorSymbol()) {
+                    expression = expression.dropLast(1).trimEnd()
+                }
+            }
+
+            rebuildExpression()
+        } else {
+            clearScreen()
+        }
     }
 
     /**
@@ -363,9 +363,7 @@ class Calculator(dataBinding: ActivityMainBinding, private val context: Context)
                     operators.push(element)
                 }
                 element.isNotEmpty() -> {
-                    errorDetected = true
-                    expression = ""
-                    currentNumber = ""
+                    generateError()
                     return emptyList()
                 }
             }
@@ -431,9 +429,7 @@ class Calculator(dataBinding: ActivityMainBinding, private val context: Context)
                 }
 
                 else -> {
-                    errorDetected = true
-                    expression = ""
-                    currentNumber = ""
+                    generateError()
                     return 0.0
                 }
             }
@@ -457,9 +453,7 @@ class Calculator(dataBinding: ActivityMainBinding, private val context: Context)
             "cubed" -> num.pow(3)
             "percent" -> num / 100
             else -> {
-                errorDetected = true
-                expression = ""
-                currentNumber = ""
+                generateError()
                 return 0.0
             }
         }
@@ -480,12 +474,19 @@ class Calculator(dataBinding: ActivityMainBinding, private val context: Context)
             "multiply" -> num1 * num2
             "divide" -> num1 / num2
             else -> {
-                errorDetected = true
-                expression = ""
-                currentNumber = ""
+                generateError()
                 return 0.0
             }
         }
+    }
+
+    /**
+     * Sets the error flag and resets the expression, and current number.
+     */
+    private fun generateError() {
+        errorDetected = true
+        expression = ""
+        currentNumber = ""
     }
 
     /**
