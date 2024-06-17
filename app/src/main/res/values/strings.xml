@@ -54,5 +54,6 @@
     <string name="decimal_format">"%.8f"</string>
     <string name="max_input_length">"50"</string>
     <string name="error_text">Error</string>
-    <string name="empty_text">M</string>
+    <string name="empty_text">" "</string>
+    <string name="memory_text">"M"</string>
 </resources>

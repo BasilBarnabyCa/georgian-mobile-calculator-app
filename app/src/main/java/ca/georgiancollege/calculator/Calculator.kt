@@ -23,6 +23,7 @@ class Calculator(dataBinding: ActivityMainBinding, private val context: Context)
     private var currentNumber: String
     private var lastOperator: String
     private var errorDetected: Boolean
+    private var memoryNumberValue: Double
     private val operatorMap = mapOf(
         "plus" to context.getString(R.string.plus_text),
         "minus" to context.getString(R.string.minus_text),
@@ -39,6 +40,7 @@ class Calculator(dataBinding: ActivityMainBinding, private val context: Context)
         result = "0"
         currentNumber = ""
         lastOperator = ""
+        memoryNumberValue = 0.0
         errorDetected = false
         createButtons()
     }
@@ -79,7 +81,12 @@ class Calculator(dataBinding: ActivityMainBinding, private val context: Context)
         )
 
         val actionButtons = arrayOf(
-            binding.deleteButton
+            binding.deleteButton,
+            binding.mPlusButton,
+            binding.mMinusButton,
+            binding.mSaveButton,
+            binding.mClearButton,
+            binding.mRecallButton
         )
 
         // Separated clear button to elevate it over the error detected check
@@ -149,7 +156,7 @@ class Calculator(dataBinding: ActivityMainBinding, private val context: Context)
             }
 
             "plus_minus" -> {
-                if (currentNumber.isNotEmpty() && currentNumber !="0") {
+                if (currentNumber.isNotEmpty() && currentNumber != "0") {
                     currentNumber = if (currentNumber.startsWith("-")) {
                         currentNumber.substring(1)
                     } else {
@@ -183,6 +190,27 @@ class Calculator(dataBinding: ActivityMainBinding, private val context: Context)
             "delete" -> {
                 deleteCharacter()
             }
+
+            "M+" -> {
+                memoryAdd()
+            }
+
+            "M-" -> {
+                memorySubtract()
+            }
+
+            "MS" -> {
+                memorySave()
+            }
+
+            "MC" -> {
+                memoryClear()
+            }
+
+            "MR" -> {
+                memoryRecall()
+            }
+
         }
     }
 
@@ -236,11 +264,12 @@ class Calculator(dataBinding: ActivityMainBinding, private val context: Context)
     private fun formatExpression(expression: String): String {
         var formattedExpression = expression
         operatorMap.forEach { (operator) ->
-            formattedExpression = if (operator == "squared" || operator == "square_root" || operator == "cubed") {
-                formattedExpression.replace(operator, " $operator")
-            } else {
-                formattedExpression.replace(operator, " $operator ")
-            }
+            formattedExpression =
+                if (operator == "squared" || operator == "square_root" || operator == "cubed") {
+                    formattedExpression.replace(operator, " $operator")
+                } else {
+                    formattedExpression.replace(operator, " $operator ")
+                }
         }
         return formattedExpression.trim()
     }
@@ -300,9 +329,9 @@ class Calculator(dataBinding: ActivityMainBinding, private val context: Context)
      *
      * @return True if the input length is within the limit, false otherwise.
      */
-    private fun limitInput() : Boolean
-    {
-        return binding.resultTextView.text.toString().length <= context.getString(R.string.max_input_length).toInt()
+    private fun limitInput(): Boolean {
+        return binding.resultTextView.text.toString().length <= context.getString(R.string.max_input_length)
+            .toInt()
     }
 
     /**
@@ -325,7 +354,8 @@ class Calculator(dataBinding: ActivityMainBinding, private val context: Context)
             solution.toString().dropLast(2)
         } else {
             // Format to 8 decimal places and use regex to drop trailing zeros
-            String.format(context.getString(R.string.decimal_format), solution).replace(Regex("\\.?0*$"), "")
+            String.format(context.getString(R.string.decimal_format), solution)
+                .replace(Regex("\\.?0*$"), "")
         }
     }
 
@@ -362,6 +392,7 @@ class Calculator(dataBinding: ActivityMainBinding, private val context: Context)
                     }
                     operators.push(element)
                 }
+
                 element.isNotEmpty() -> {
                     generateError()
                     return emptyList()
@@ -487,6 +518,55 @@ class Calculator(dataBinding: ActivityMainBinding, private val context: Context)
         errorDetected = true
         expression = ""
         currentNumber = ""
+    }
+
+    /**
+     * Adds the result to the memory.
+     */
+    private fun memoryAdd() {
+        if (!errorDetected) {
+            memoryNumberValue += result.toDoubleOrNull() ?: 0.0
+            binding.memoryTextView?.text = "M"
+        }
+    }
+
+    /**
+     * Subtracts the result from the memory.
+     */
+    private fun memorySubtract() {
+        if (!errorDetected) {
+            memoryNumberValue -= result.toDoubleOrNull() ?: 0.0
+            binding.memoryTextView?.text = "M"
+        }
+    }
+
+
+    /**
+     * Saves the current result to the memory.
+     */
+    private fun memorySave() {
+        if (!errorDetected) {
+            memoryNumberValue = result.toDouble()
+            binding.memoryTextView?.text = "M"
+        }
+    }
+
+    /**
+     * Clears the memory and resets the memory value.
+     */
+    private fun memoryClear() {
+        memoryNumberValue = 0.0
+        binding.memoryTextView?.text = ""
+    }
+
+    /**
+     * Retrieves the value from the memory and displays it.
+     */
+    private fun memoryRecall() {
+        clearScreen()
+        currentNumber = if (memoryNumberValue.toString().contains(".")) memoryNumberValue.toString()
+            .dropLast(2) else memoryNumberValue.toString()
+        binding.resultTextView.text = currentNumber
     }
 
     /**
