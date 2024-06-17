@@ -93,6 +93,14 @@
         <item name="android:textSize">@dimen/formula_text_size</item>
     </style>
 
+    <style name="memory_status_text" parent="screen_text">
+        <item name="android:fontFamily">@font/roboto_mono_medium </item>
+        <item name="android:layout_marginTop">@dimen/memory_status_margin_top</item>
+        <item name="android:layout_marginStart">@dimen/memory_status_margin_start</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/memory_status_text_size</item>
+    </style>
+
 
     <!--Landscape-->
     <style name="gradient_button_land" parent="">
@@ -137,4 +145,5 @@
         <item name="android:layout_marginTop">@dimen/formula_text_margin_top_land</item>
     </style>
 
+    <dimen name="memory_status_text_margin">10dp</dimen>
 </resources>

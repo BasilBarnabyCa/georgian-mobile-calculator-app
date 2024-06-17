@@ -26,6 +26,13 @@
             android:text="@string/memory_recall_text"
             android:tag="MR" />
 
+        <TextView
+            android:id="@+id/memoryStatusTextView"
+            style="@style/memory_status_text"
+            android:layout_width="wrap_content"
+            android:text="@string/empty_text"
+            android:textAlignment="textStart" />
+
     </FrameLayout>
 
     <LinearLayout

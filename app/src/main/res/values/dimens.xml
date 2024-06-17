@@ -6,7 +6,10 @@
     <dimen name="text_size">22sp</dimen>
     <dimen name="font_icon_text_size">18sp</dimen>
     <dimen name="formula_text_size">25sp</dimen>
+    <dimen name="memory_status_text_size">20sp</dimen>
     <dimen name="formula_text_margin_top">75dp</dimen>
+    <dimen name="memory_status_margin_top">20dp</dimen>
+    <dimen name="memory_status_margin_start">20dp</dimen>
     <dimen name="padding_y">100dp</dimen>
     <dimen name="padding_x">25dp</dimen>
     <dimen name="small_text_padding_x">30dp</dimen>
